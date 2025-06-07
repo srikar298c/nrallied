@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Building, Linkedin, Globe, Download, X, User } from "lucide-react"
+import { Mail, Phone, MapPin,  Download, X, User, Share } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -93,14 +93,14 @@ END:VCARD`
             className="flex items-center gap-4 mb-6"
           >
             <div className="relative">
-              <Image
+              {/* <Image
                 src="/saurabh-profile.jpg"
                 alt="Saurabh Surana"
                 width={80}
                 height={80}
                 className="rounded-full border-3 border-[#0476D9]/30 shadow-lg"
               />
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-[#011532]"></div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-[#011532]"></div> */}
             </div>
 
             <div>
@@ -147,7 +147,7 @@ END:VCARD`
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10">
+            {/* <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10">
               <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
                 <Building className="w-5 h-5 text-[#0476D9]" />
               </div>
@@ -155,7 +155,7 @@ END:VCARD`
                 <p className="text-white font-medium">NR Allied Company</p>
                 <p className="text-gray-400 text-xs">Organization</p>
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Action Buttons */}
@@ -183,13 +183,13 @@ END:VCARD`
             className="mt-4"
           >
             <button onClick={handleAddToContacts} className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 shadow-lg">
-              <Download className="w-4 h-4" />
-              Add to Contacts
+              <Share className="w-4 h-4" />
+              Share your Contacts
             </button>
           </motion.div>
 
           {/* Social Links */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
@@ -201,7 +201,7 @@ END:VCARD`
             <div className="w-10 h-10 bg-white/10 hover:bg-[#0476D9]/20 rounded-xl flex items-center justify-center cursor-pointer transition-colors">
               <Globe className="w-5 h-5 text-[#0476D9]" />
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </motion.div>
 
