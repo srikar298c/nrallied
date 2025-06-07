@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin,  Download, X, User, Share } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 
 export default function ContactCard() {
@@ -69,20 +70,32 @@ END:VCARD`
 
         {/* Header Section */}
         <div className="relative z-10">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-center mb-6">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
+                <Link href="/">
               <Image
                 src="/logo.png"
                 alt="NR Allied Logo"
-                width={70}
-                height={70}
-                className="rounded-2xl bg-gray-300 shadow-lg border-2 p-3 border-[#0476D9]/20"
+                width={120}
+                height={120}
+                className="  shadow-lg ring-[#0476D9]/30"
               />
+              </Link>
             </motion.div>
+            
+            {/* <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-right"
+            >
+              <div className="text-[#0476D9] text-sm font-medium">NR Allied</div>
+              <div className="text-xs text-gray-300">Company</div>
+            </motion.div> */}
           </div>
 
           {/* Profile Section */}
@@ -90,54 +103,51 @@ END:VCARD`
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-4 mb-6"
+            className="flex items-center justify-center gap-4 mb-6"
           >
-            <div className="relative">
-              {/* <Image
-                src="/saurabh-profile.jpg"
-                alt="Saurabh Surana"
-                width={80}
-                height={80}
-                className="rounded-full border-3 border-[#0476D9]/30 shadow-lg"
-              />
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-[#011532]"></div> */}
-            </div>
-
-            <div>
+            
+            
+            <div className="text-center">
               <h2 className="text-2xl font-bold text-white mb-1">Saurabh Surana</h2>
               <p className="text-[#0476D9] font-medium text-sm">Managing Director</p>
-              <p className="text-gray-300 text-xs">NR Allied Company</p>
+              {/* <p className="text-gray-300 text-xs">NR Allied Company</p> */}
             </div>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
             className="space-y-4"
           >
-            <div onClick={handlePhoneClick} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 cursor-pointer">
+            <div 
+              onClick={handlePhoneClick}
+              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors cursor-pointer"
+            >
               <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
                 <Phone className="w-5 h-5 text-[#0476D9]" />
               </div>
               <div>
-                <p className="text-white font-medium hover:text-[#0476D9]">+91 9000004821</p>
+                <p className="text-white font-medium hover:text-[#0476D9] transition-colors">+91 9866682202</p>
                 <p className="text-gray-400 text-xs">Click to call</p>
               </div>
             </div>
 
-            <div onClick={handleEmailClick} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 cursor-pointer">
+            <div 
+              onClick={handleEmailClick}
+              className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors cursor-pointer"
+            >
               <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
                 <Mail className="w-5 h-5 text-[#0476D9]" />
               </div>
               <div>
-                <p className="text-white font-medium hover:text-[#0476D9]">nrcommercialspvtltd@gmail.com</p>
+                <p className="text-white font-medium hover:text-[#0476D9] transition-colors">nrcommercialspvtltd@gmail.com</p>
                 <p className="text-gray-400 text-xs">Click to email</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10">
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
               <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-[#0476D9]" />
               </div>
@@ -147,7 +157,7 @@ END:VCARD`
               </div>
             </div>
 
-            {/* <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10">
+            {/* <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
               <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
                 <Building className="w-5 h-5 text-[#0476D9]" />
               </div>
@@ -165,11 +175,17 @@ END:VCARD`
             transition={{ delay: 0.8, duration: 0.5 }}
             className="flex gap-3 mt-6"
           >
-            <button onClick={handlePhoneClick} className="flex-1 bg-[#0476D9] hover:bg-[#0476D9]/80 text-white py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2">
+            <button 
+              onClick={handlePhoneClick}
+              className="flex-1 bg-[#0476D9] hover:bg-[#0476D9]/80 text-white py-3 px-4 rounded-xl font-medium text-sm transition-colors flex items-center justify-center gap-2"
+            >
               <Phone className="w-4 h-4" />
               Call
             </button>
-            <button onClick={handleEmailClick} className="flex-1 bg-white/10 hover:bg-white/20 text-white py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2">
+            <button 
+              onClick={handleEmailClick}
+              className="flex-1 bg-white/10 hover:bg-white/20 text-white py-3 px-4 rounded-xl font-medium text-sm transition-colors flex items-center justify-center gap-2"
+            >
               <Mail className="w-4 h-4" />
               Email
             </button>
@@ -182,9 +198,12 @@ END:VCARD`
             transition={{ delay: 0.9, duration: 0.5 }}
             className="mt-4"
           >
-            <button onClick={handleAddToContacts} className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 shadow-lg">
+            <button 
+              onClick={handleAddToContacts}
+              className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white py-3 px-4 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
+            >
               <Share className="w-4 h-4" />
-              Share your Contacts
+              Share your Contact
             </button>
           </motion.div>
 

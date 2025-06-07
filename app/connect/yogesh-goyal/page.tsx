@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin,  Download, X, User, Share } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 
 export default function ContactCard() {
@@ -71,7 +72,7 @@ END:VCARD`
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-gradient-to-br min-h-screen flex items-center justify-center  from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
+        className="bg-gradient-to-br  from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -81,19 +82,21 @@ END:VCARD`
         
         {/* Header Section */}
         <div className="relative z-10">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-center mb-6">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
+                <Link href="/">
               <Image
                 src="/logo.png"
                 alt="NR Allied Logo"
-                width={70}
-                height={70}
-                className="rounded-2xl bg-gray-300 shadow-lg border-2 p-3 border-[#0476D9]/20"
+                width={120}
+                height={120}
+                className="  shadow-lg ring-[#0476D9]/30"
               />
+              </Link>
             </motion.div>
             
             {/* <motion.div
@@ -112,23 +115,14 @@ END:VCARD`
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-4 mb-6"
+            className="flex items-center justify-center gap-4 mb-6"
           >
-            <div className="relative">
-              {/* <Image
-                src="/yogesh-profile.jpg"
-                alt="Yogesh Goyal"
-                width={80}
-                height={80}
-                className="rounded-full border-3 border-[#0476D9]/30 shadow-lg"
-              /> */}
-              {/* <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-[#011532]"></div> */}
-            </div>
             
-            <div>
+            
+            <div className="text-center">
               <h2 className="text-2xl font-bold text-white mb-1">Yogesh Goyal</h2>
               <p className="text-[#0476D9] font-medium text-sm">Managing Director</p>
-              <p className="text-gray-300 text-xs">NR Allied Company</p>
+              {/* <p className="text-gray-300 text-xs">NR Allied Company</p> */}
             </div>
           </motion.div>
 
