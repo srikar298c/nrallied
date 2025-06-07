@@ -11,7 +11,7 @@ export const metadata = {
 export default function ConnectLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#011532] text-[#0476D9] min-h-screen`}>
+      <body className={`${inter.className} bg-[#011532] text-[#0476D9]  min-h-screen`}>
         {children}
       </body>
     </html>

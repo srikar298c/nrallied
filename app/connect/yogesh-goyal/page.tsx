@@ -36,7 +36,7 @@ END:VCARD`
   // Handle add to contacts - download first, then show modal
   const handleAddToContacts = () => {
     // First download the VCF file
-    downloadVCF()
+    // downloadVCF()
     
     // Then show the modal for visitor info
     setTimeout(() => {
@@ -71,7 +71,7 @@ END:VCARD`
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-gradient-to-br from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
+        className="bg-gradient-to-br min-h-screen flex items-center justify-center  from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -269,9 +269,7 @@ END:VCARD`
               </button>
             </div>
             
-            <p className="text-gray-600 text-sm mb-4">
-              Contact downloaded! Please share your details for our records.
-            </p>
+          
 
             <form onSubmit={handleModalSubmit} className="space-y-4">
               <div>

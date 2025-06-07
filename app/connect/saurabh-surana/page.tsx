@@ -33,7 +33,7 @@ END:VCARD`
   }
 
   const handleAddToContacts = () => {
-    downloadVCF()
+    // downloadVCF()
     setTimeout(() => setShowModal(true), 500)
   }
 
@@ -232,9 +232,7 @@ END:VCARD`
               </button>
             </div>
 
-            <p className="text-gray-600 text-sm mb-4">
-              Contact downloaded! Please share your details for our records.
-            </p>
+            
 
             <form onSubmit={handleModalSubmit} className="space-y-4">
               <div>
