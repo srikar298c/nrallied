@@ -62,7 +62,7 @@ END:VCARD`
   }
 
   const handleEmailClick = () => {
-    window.open('mailto:yogesh.goyal@nrallied.com', '_self')
+    window.open('mailto:nrcommercialspvtltd@gmail.com', '_self')
   }
 
   return (
@@ -160,7 +160,7 @@ END:VCARD`
                 <Mail className="w-5 h-5 text-[#0476D9]" />
               </div>
               <div>
-                <p className="text-white font-medium hover:text-[#0476D9] transition-colors">yogesh.goyal@nrallied.com</p>
+                <p className="text-white font-medium hover:text-[#0476D9] transition-colors">nrcommercialspvtltd@gmail.com</p>
                 <p className="text-gray-400 text-xs">Click to email</p>
               </div>
             </div>
