@@ -10,29 +10,29 @@ export default function ContactCard() {
   const [visitorInfo, setVisitorInfo] = useState({ name: '', mobile: '' })
 
   // Function to generate VCF content (simplified - only name and phone)
-  const generateVCF = () => {
-    const vcfContent = `BEGIN:VCARD
-VERSION:3.0
-FN:Yogesh Goyal
-N:Goyal;Yogesh;;;
-TEL;TYPE=CELL:+919866682202
-END:VCARD`
-    return vcfContent
-  }
+//   const generateVCF = () => {
+//     const vcfContent = `BEGIN:VCARD
+// VERSION:3.0
+// FN:Yogesh Goyal
+// N:Goyal;Yogesh;;;
+// TEL;TYPE=CELL:+919866682202
+// END:VCARD`
+//     return vcfContent
+//   }
 
   // Function to download VCF file
-  const downloadVCF = () => {
-    const vcfContent = generateVCF()
-    const blob = new Blob([vcfContent], { type: 'text/vcard' })
-    const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'yogesh-goyal-contact.vcf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
-  }
+//   const downloadVCF = () => {
+//     const vcfContent = generateVCF()
+//     const blob = new Blob([vcfContent], { type: 'text/vcard' })
+//     const url = window.URL.createObjectURL(blob)
+//     const link = document.createElement('a')
+//     link.href = url
+//     link.download = 'yogesh-goyal-contact.vcf'
+//     document.body.appendChild(link)
+//     link.click()
+//     document.body.removeChild(link)
+//     window.URL.revokeObjectURL(url)
+//   }
 
   // Handle add to contacts - download first, then show modal
   const handleAddToContacts = () => {

@@ -9,29 +9,29 @@ export default function ContactCard() {
   const [showModal, setShowModal] = useState(false)
   const [visitorInfo, setVisitorInfo] = useState({ name: '', mobile: '' })
 
-  const generateVCF = () => {
-    const vcfContent = `BEGIN:VCARD
-VERSION:3.0
-FN:Saurabh Surana
-N:Surana;Saurabh;;;
-TEL;TYPE=CELL:+919000004821
-EMAIL:nrcommercialspvtltd@gmail.com
-END:VCARD`
-    return vcfContent
-  }
+//   const generateVCF = () => {
+//     const vcfContent = `BEGIN:VCARD
+// VERSION:3.0
+// FN:Saurabh Surana
+// N:Surana;Saurabh;;;
+// TEL;TYPE=CELL:+919000004821
+// EMAIL:nrcommercialspvtltd@gmail.com
+// END:VCARD`
+//     return vcfContent
+//   }
 
-  const downloadVCF = () => {
-    const vcfContent = generateVCF()
-    const blob = new Blob([vcfContent], { type: 'text/vcard' })
-    const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'saurabh-surana-contact.vcf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
-  }
+//   const downloadVCF = () => {
+//     const vcfContent = generateVCF()
+//     const blob = new Blob([vcfContent], { type: 'text/vcard' })
+//     const url = window.URL.createObjectURL(blob)
+//     const link = document.createElement('a')
+//     link.href = url
+//     link.download = 'saurabh-surana-contact.vcf'
+//     document.body.appendChild(link)
+//     link.click()
+//     document.body.removeChild(link)
+//     window.URL.revokeObjectURL(url)
+//   }
 
   const handleAddToContacts = () => {
     // downloadVCF()
