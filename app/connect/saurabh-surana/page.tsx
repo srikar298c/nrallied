@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Download, X, User, Share } from "lucide-react"
+import { Mail, Phone, MapPin, Download, X, User, Share, Globe } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -136,10 +136,20 @@ END:VCARD`
                 <MapPin className="w-5 h-5 text-[#0476D9]" />
               </div>
               <div>
-                <p className="text-white font-medium">IDA Kattedan, RR District</p>
-                <p className="text-gray-400 text-xs">Sy No - 45, Road no 25, Telangana, 500077</p>
+                <p className="text-white font-medium"> Sy No - 45, Road no 25, IDA Kattedan </p>
+                <p className="text-gray-400 text-xs"> RR District, Telangana, 500077</p>
               </div>
             </div>
+
+            <Link href= '/' className="flex items-center gap-3 p-3 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10">
+              <div className="w-10 h-10 bg-[#0476D9]/20 rounded-xl flex items-center justify-center">
+                <Globe className="w-5 h-5 text-[#0476D9]" />
+              </div>
+              <div>
+                <p className="text-white font-medium">www.nrallied.com</p>
+                
+              </div>
+            </Link>
           </motion.div>
 
           {/* Buttons */}
