@@ -48,7 +48,7 @@ export function AboutSection() {
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             NR Allied is a diversified group of plastic packaging companies with six specialized units. 
-            Since our founding in 2016, we've grown with an unwavering focus on scale, innovation, and sustainable practices.
+            Since our founding in 2016,  we&rsquo;ve grown with an unwavering focus on scale, innovation, and sustainable practices.
           </p>
         </motion.div>
 

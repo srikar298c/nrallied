@@ -44,7 +44,7 @@ export function StatsSection() {
             </span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our commitment to quality and scale delivers consistent results that power India's leading brands.
+            Our commitment to quality and scale delivers consistent results that power India&rsquo;s leading brands.
           </p>
         </motion.div>
 

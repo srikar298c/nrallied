@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          NR Allied stands as India's premier plastic packaging manufacturer, crafting sustainable solutions 
+          NR Allied stands as India&rsquo;s premier plastic packaging manufacturer, crafting sustainable solutions 
           that power leading FMCG and pharmaceutical brands with precision, quality, and unwavering reliability.
         </motion.p>
 

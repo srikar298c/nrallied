@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ContactInfo } from "@/types/contact";
 import { ANIMATION_VARIANTS } from "@/constants/animations";

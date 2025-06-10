@@ -26,7 +26,7 @@ export function BrandTrustSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Trusted by India's
+            Trusted by India&rsquo;s
             <span className="block bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] bg-clip-text text-transparent">
               Leading Brands
             </span>
