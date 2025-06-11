@@ -20,7 +20,7 @@ export const SAURABH_SURANA_CONTACT_DATA: ContactInfo = {
     image: "/images/team/saurabh-surana.jpg",
     name: "Saurabh Surana",
     title: "Managing Director",
-    phone: "+919866682202",
+    phone: "+919000004821",
     email: "nrcommercialspvtltd@gmail.com",
     address: {
       street: "Sy No - 45, Road no 25, IDA Kattedan",
