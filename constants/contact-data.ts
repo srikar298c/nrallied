@@ -13,7 +13,7 @@ export const YOGESH_GOYAL_CONTACT_DATA: ContactInfo = {
       zip: "500077",
       country: "India"
     },
-    website: "www.nrallied.com/connect/yogesh-goyal"
+    website: "www.nrallied.com"
   }
 
 export const SAURABH_SURANA_CONTACT_DATA: ContactInfo = {
@@ -29,5 +29,5 @@ export const SAURABH_SURANA_CONTACT_DATA: ContactInfo = {
       zip: "500077",
       country: "India"
     },
-    website: "www.nrallied.com/connect/saurabh-surana"
+    website: "www.nrallied.com"
   }
