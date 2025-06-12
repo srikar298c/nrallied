@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ArrowDown, Link } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 const HomeHero: React.FC = () => {
   return (
@@ -35,10 +36,10 @@ const HomeHero: React.FC = () => {
           
           <div className="mt-16 flex items-center">
             <div className="flex -space-x-4">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/432px-ITC_Limited_Logo.svg.png?20110306042056" alt="Client" className="w-12 h-12 rounded-full border-2 border-white bg-white" />
-              <img src="https://mma.prnewswire.com/media/1332039/Dukes_India_Logo.jpg?w=200" alt="Client" className="w-12 h-12 rounded-full border-2 border-white" />
-              <img src="https://upload.wikimedia.org/wikipedia/en/0/08/Kingfisher_beer_logo.png" alt="Client" className="w-12 h-12 rounded-full border-2 border-white bg-red-500" />
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZLwCyQN233VIVCAqULzGrJQK0OlDAu2EPQ&s" alt="Client" className="w-12 h-12 rounded-full border-2 border-white" />
+              <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ITC_Limited_Logo.svg/432px-ITC_Limited_Logo.svg.png?20110306042056" width={100} height={100} alt="Client" className="w-12 h-12 rounded-full border-2 border-white bg-white" />
+              <Image src="https://mma.prnewswire.com/media/1332039/Dukes_India_Logo.jpg?w=200" width={100} height={100} alt="Client" className="w-12 h-12 rounded-full border-2 border-white" />
+              <Image src="https://upload.wikimedia.org/wikipedia/en/0/08/Kingfisher_beer_logo.png" width={100} height={100} alt="Client" className="w-12 h-12 rounded-full border-2 border-white bg-red-500" />
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZLwCyQN233VIVCAqULzGrJQK0OlDAu2EPQ&s" width={100} height={100} alt="Client" className="w-12 h-12 rounded-full border-2 border-white" />
               <div className="w-12 h-12 rounded-full border-2 border-white bg-[#0476D9] flex items-center justify-center text-white font-bold">
                 20+
               </div>
