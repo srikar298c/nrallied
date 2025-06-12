@@ -1,11 +1,13 @@
 import './globals.css';
 import 'animate.css';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
+import Navbar from '@/components/landing/common/Navbar';
+import Footer from '@/components/landing/common/Footer';
 
 const inter = Inter({ 
   subsets: ['latin'],
-  display: 'swap'
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -61,15 +63,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="canonical" href="https://nrallied.com" />
-        <meta name="theme-color" content="#0476D9" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="canonical" href="https://nrallied.com" />
+        <meta name="theme-color" content="#0476D9" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={`${inter.className} bg-gradient-to-br from-[#011532] to-[#012951] antialiased`}>{children}</body>
+      <body className={`${inter.className} bg-gradient-to-br from-[#011532] to-[#012951] text-white antialiased`}>
+        <Navbar />
+        <main className="relative z-0">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

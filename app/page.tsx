@@ -5,6 +5,8 @@ import { MachinerySection } from '@/components/landing/machinery-section';
 import { ProductsSection } from '@/components/landing/products-section';
 import { QualitySection } from '@/components/landing/quality-section';
 import { BrandTrustSection } from '@/components/landing/brand-trust-section';
+import HomeHero from '@/components/landing/home/HomeHero';
+
 
 /**
  * NR Allied Landing Page
@@ -12,14 +14,17 @@ import { BrandTrustSection } from '@/components/landing/brand-trust-section';
  */
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <HeroSection />
+    <main className="scroll-smooth min-h-screen bg-gray-50">
+         <section id="home">
+      <HomeHero/>
+      </section>
       <StatsSection />
       <AboutSection />
       <MachinerySection />
       <ProductsSection />
       <QualitySection />
       <BrandTrustSection />
+      
     </main>
   );
 }
