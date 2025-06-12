@@ -9,12 +9,10 @@ import { Cog, Factory, Shield, Zap } from 'lucide-react';
 export function MachinerySection() {
   const machineryList = [
     'ASB 70 DPW Machines',
-    // 'NISSEI ISBM Machines', 
     'L&T PET Preform Molding',
     'SHYAM PLAST SBM MACHINES',
     'HILDA Automation (120 BPM)',
-    // 'Injection Molding Machines (350 MT/month)',
-    // 'Washing, flaking, and SSP units for PET recycling'
+
   ];
 
   const features = [

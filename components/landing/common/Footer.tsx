@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+// import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -17,7 +17,7 @@ const Footer = () => {
             <p className="text-gray-400 mb-6 max-w-xs">
               We mold not just plastic — but partnerships. Leading plastic packaging solutions across India.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-[#0476D9] transition-colors">
                 <Facebook size={20} />
               </a>
@@ -30,7 +30,7 @@ const Footer = () => {
               <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-[#0476D9] transition-colors">
                 <Linkedin size={20} />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
@@ -75,10 +75,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <address className="not-italic text-gray-400 space-y-2">
-              <p className="font-medium">Corporate Office:</p>
-              <p>123 Industrial Area, Mumbai, Maharashtra, India - 400001</p>
-              <p>Phone: <a href="tel:+919876543210" className="hover:text-white">+91 98765 43210</a></p>
-              <p>Email: <a href="mailto:info@nrallied.com" className="hover:text-white">info@nrallied.com</a></p>
+              <p className="font-medium">Address:</p>
+              <p>Sy No -45, Road no 25, IDA Kattedan, R.R District, 500077. Telangana </p>
+              <p>Phone: <a href="tel:+919866682202" className="hover:text-white">+91 9866682202</a></p>
+              <p>Email: <a href="mailto:nrcommercialspvtltd@gmail.com" className="hover:text-white">nrcommercialspvtltd@gmail.com</a></p>
             </address>
           </div>
         </div>

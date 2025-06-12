@@ -4,6 +4,7 @@ import { QualitySection } from '@/components/landing/quality-section';
 import HomeHero from '@/components/landing/home/HomeHero';
 import AboutSection from '@/components/landing/home/AboutSection';
 import TimelineSection from '@/components/landing/home/TimelineSection';
+import InfrastructureSection from '@/components/landing/home/InfrastructureSection';
 
 
 /**
@@ -19,6 +20,9 @@ export default function Home() {
       <section id="about"><AboutSection /></section>
       
     <section id=''> <TimelineSection/>
+    </section>
+    <section id='infrastructure'>
+        <InfrastructureSection/>
     </section>
       <ProductsSection />
       <QualitySection />
