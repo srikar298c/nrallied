@@ -15,7 +15,7 @@ export function ProductsSection() {
     },
     {
       icon: PillBottle,
-      title: 'JMFL Bottles',
+      title: 'IMFL Bottles',
       description: 'Indian-made foreign liquor bottles with premium quality standards'
     },
     {

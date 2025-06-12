@@ -1,10 +1,9 @@
 
-import { MachinerySection } from '@/components/landing/machinery-section';
 import { ProductsSection } from '@/components/landing/products-section';
 import { QualitySection } from '@/components/landing/quality-section';
-import { BrandTrustSection } from '@/components/landing/brand-trust-section';
 import HomeHero from '@/components/landing/home/HomeHero';
 import AboutSection from '@/components/landing/home/AboutSection';
+import TimelineSection from '@/components/landing/home/TimelineSection';
 
 
 /**
@@ -19,10 +18,11 @@ export default function Home() {
       </section>
       <section id="about"><AboutSection /></section>
       
-      <MachinerySection />
+    <section id=''> <TimelineSection/>
+    </section>
       <ProductsSection />
       <QualitySection />
-      <BrandTrustSection />
+
       
     </main>
   );

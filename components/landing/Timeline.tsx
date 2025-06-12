@@ -1,3 +1,4 @@
+'use client'
 import { TimelineItem } from '@/types/division';
 import React, { useState, useEffect } from 'react';
 
@@ -18,7 +19,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
   }, [items.length]);
   
   return (
-    <div className="relative py-12">
+    <div className="relative py-12 px-6">
       {/* Timeline Line */}
       <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
       

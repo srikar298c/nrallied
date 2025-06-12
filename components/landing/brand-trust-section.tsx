@@ -12,7 +12,6 @@ export function BrandTrustSection() {
     'Hindustan Unilever',
     'Dabur India',
     'Marico Limited',
-    'Cipla Pharmaceuticals',
   ];
 
   return (
