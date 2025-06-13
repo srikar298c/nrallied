@@ -1,95 +1,285 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const sections = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Divisions', href: '#divisions' },
+  { 
+    name: 'Divisions', 
+    href: '#divisions',
+    // Uncomment and add submenu items if needed
+    // submenu: [
+    //   { name: 'Division 1', href: '#division-1' },
+    //   { name: 'Division 2', href: '#division-2' },
+    // ]
+  },
   { name: 'Infrastructure', href: '#infrastructure' },
   { name: 'Industries', href: '#industries' },
   { name: 'Contact Us', href: '#contact' },
 ];
 
+interface NavItem {
+  name: string;
+  href: string;
+  submenu?: { name: string; href: string; }[];
+}
+
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
+  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 20);
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle active section detection
+  useEffect(() => {
+    const handleActiveSection = () => {
+      const sections = document.querySelectorAll('[id]');
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+          setActiveSection(`#${sectionId}`);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleActiveSection);
+    return () => window.removeEventListener('scroll', handleActiveSection);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const navbar = document.getElementById('navbar');
+      if (navbar && !navbar.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Smooth scroll to section
+  const handleSectionClick = useCallback((href: string, e: React.MouseEvent) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = (element as HTMLElement).offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+      setIsMenuOpen(false);
+    }
+  }, []);
+
+  // Handle mobile menu toggle
+  const toggleMobileMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
   return (
-<nav
+    <nav
+      id="navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white shadow-md py-2'
-          : 'bg-transparent py-4'
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' 
+          : 'bg-white shadow-md py-4'
       }`}
     >
-      <div className="container mx-auto px-6 md:px-8">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              {isScrolled ? (
-                <Image src="/images/logo-scrolled.png" alt="NR Allied Logo Scrolled" width={70} height={70} />
-              ) : (
-                <Image src="/images/logo.png" alt="NR Allied Logo" width={70} height={70} />
-              )}
+          <div className="flex items-center flex-shrink-0">
+            <Link 
+              href="/" 
+              className="flex items-center group transition-all duration-300 hover:scale-105"
+            >
+              <div className="relative overflow-hidden rounded-lg">
+                <Image 
+                  src="/images/logo-scrolled.png" 
+                  alt="NR Allied Logo" 
+                  width={isScrolled ? 60 : 70} 
+                  height={isScrolled ? 60 : 70}
+                  className="transition-all duration-300 group-hover:scale-110"
+                  priority
+                />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-[#0476D9]/20 via-transparent to-[#0456B3]/10 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                <div className="absolute inset-0 rounded-lg ring-2 ring-[#0476D9]/0 group-hover:ring-[#0476D9]/30 transition-all duration-300" />
+              </div>
             </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {sections.map(({ name, href }) => (
-              <a
-                key={href}
-                href={href}
-                className={`font-medium transition-colors ${
-                  isScrolled ? 'text-gray-800 hover:text-[#0476D9]' : 'text-white hover:text-[#95D7FA]'
-                }`}
-              >
-                {name}
-              </a>
+          <div className="hidden lg:flex items-center space-x-1">
+            {sections.map((section) => (
+              <NavLink
+                key={section.href}
+                section={section}
+                isActive={activeSection === section.href}
+                onClick={handleSectionClick}
+              />
             ))}
           </div>
 
-
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-black focus:outline-none"
+              onClick={toggleMobileMenu}
+              className="relative p-2 text-gray-700 hover:text-[#0476D9] focus:outline-none focus:ring-2 focus:ring-[#0476D9]/20 rounded-lg transition-colors duration-200"
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <div className="relative w-6 h-6">
+                <Menu 
+                  size={24} 
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
+                  }`} 
+                />
+                <X 
+                  size={24} 
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-0 opacity-100' : 'rotate-180 opacity-0'
+                  }`} 
+                />
+              </div>
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 rounded-lg bg-white shadow-lg overflow-hidden animate__animated animate__fadeInDown">
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="mt-4 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div className="py-2">
-              {sections.map(({ name, href }) => (
+              {sections.map((section) => (
                 <a
-                  key={href}
-                  href={href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-2 text-black hover:bg-gray-100 transition"
+                  key={section.href}
+                  href={section.href}
+                  onClick={(e) => handleSectionClick(section.href, e)}
+                  className={`block px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                    activeSection === section.href
+                      ? 'text-[#0476D9] bg-[#0476D9]/5 border-r-2 border-[#0476D9]'
+                      : 'text-gray-700 hover:text-[#0476D9] hover:bg-gray-50'
+                  }`}
                 >
-                  {name}
+                  {section.name}
                 </a>
               ))}
+              {/* Mobile CTA */}
+              <div className="px-4 py-3 border-t border-gray-100">
+                <a
+                  href="#contact"
+                  onClick={(e) => handleSectionClick('#contact', e)}
+                  className="block w-full text-center bg-gradient-to-r from-[#0476D9] to-[#0456B3] text-white px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg active:scale-95"
+                >
+                  Get Started
+                </a>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
+  );
+};
+
+// NavLink component for desktop navigation
+interface NavLinkProps {
+  section: NavItem;
+  isActive: boolean;
+  onClick: (href: string, e: React.MouseEvent) => void;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ section, isActive, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div className="relative group">
+      <a
+        href={section.href}
+        onClick={(e) => onClick(section.href, e)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 flex items-center gap-1 overflow-hidden ${
+          isActive
+            ? 'text-[#0476D9] bg-gradient-to-r from-[#0476D9]/10 to-[#0456B3]/5 shadow-md shadow-[#0476D9]/10'
+            : 'text-gray-700 hover:text-[#0476D9] hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50/50 hover:shadow-lg hover:shadow-gray-200/50'
+        }`}
+      >
+        <span className="relative z-10 transition-all duration-300 group-hover:translate-x-0.5">
+          {section.name}
+        </span>
+        {section.submenu && (
+          <ChevronDown 
+            size={16} 
+            className={`relative z-10 transition-all duration-300 ${
+              isHovered ? 'rotate-180 translate-x-0.5' : 'rotate-0'
+            }`} 
+          />
+        )}
+        
+        {/* Animated background */}
+        <div className={`absolute inset-0 bg-gradient-to-r from-[#0476D9]/5 to-[#0456B3]/5 transform transition-all duration-500 ${
+          isHovered ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+        }`} />
+        
+        {/* Active indicator */}
+        <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#0476D9] to-[#0456B3] transition-all duration-300 ${
+          isActive ? 'w-8' : 'w-0'
+        }`} />
+        
+        {/* Hover glow effect */}
+        <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-[#0476D9]/10 to-[#0456B3]/10 blur-xl transition-all duration-500 ${
+          isHovered ? 'opacity-50 scale-110' : 'opacity-0 scale-95'
+        }`} />
+      </a>
+
+      {/* Submenu (if exists) */}
+      {section.submenu && (
+        <div className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${
+          isHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+        }`}>
+          {section.submenu.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => onClick(item.href, e)}
+              className="block px-4 py-3 text-sm text-gray-700 hover:text-[#0476D9] hover:bg-gray-50 transition-colors duration-200"
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
