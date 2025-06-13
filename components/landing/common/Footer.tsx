@@ -40,9 +40,9 @@ const Footer = () => {
               {[
                 { href: '#home', label: 'Home' },
                 { href: '#about', label: 'About Us' },
-                { href: '#divisions', label: 'Our Divisions' },
+                { href: '#our-journey', label: 'Our Journey' },
                 { href: '#infrastructure', label: 'Infrastructure' },
-                { href: '#industries', label: 'Industries We Serve' },
+                { href: '#quality-control', label: 'Quality Control' },
                 { href: '#contact', label: 'Contact Us' },
               ].map(({ href, label }) => (
                 <li key={label}>
