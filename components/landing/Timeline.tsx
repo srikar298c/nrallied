@@ -56,7 +56,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                 <p className="text-gray-600">{item.description}</p>
                 {item.capacity && (
                   <div className="mt-3 pt-3 border-t border-gray-100">
-                    <span className="text-[#0476D9] font-medium">Capacity: {item.capacity}</span>
+                    <span className="text-[#0476D9] font-medium">{item.capacity}</span>
                   </div>
                 )}
               </div>

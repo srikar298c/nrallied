@@ -8,9 +8,9 @@ import Link from 'next/link'
 
 const HomeHero: React.FC = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
       {/* Background */}
-      <div
+      {/* <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage:
@@ -21,7 +21,7 @@ const HomeHero: React.FC = () => {
           className="absolute inset-0"
           style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
         />
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 py-20">
         <div className="grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
