@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+
 // import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
@@ -84,20 +84,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center space-x-4">
-            {[
-              { src: '/images/fssai.png', alt: 'FSSAI' },
-              { src: '/images/iso.png', alt: 'ISO' },
-              { src: '/images/rpet.png', alt: 'RPET' },
-            ].map(({ src, alt }) => (
-              <Image key={alt} src={src} alt={alt} width={50} height={25} className="h-6 object-contain" />
-            ))}
-          </div>
-          <p className="text-gray-500 text-sm text-center">
-            &copy; {new Date().getFullYear()} NR Allied. All rights reserved.
-          </p>
-        </div>
+       
       </div>
     </footer>
   );

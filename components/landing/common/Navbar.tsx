@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
@@ -7,24 +8,16 @@ import Image from 'next/image';
 const sections = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { 
-    name: 'Divisions', 
-    href: '#divisions',
-    // Uncomment and add submenu items if needed
-    // submenu: [
-    //   { name: 'Division 1', href: '#division-1' },
-    //   { name: 'Division 2', href: '#division-2' },
-    // ]
-  },
+  { name: 'Journey', href: '#our-journey' }, // Ensure your section has id="our-journey"
   { name: 'Infrastructure', href: '#infrastructure' },
-  { name: 'Industries', href: '#industries' },
+  { name: 'Quality Control', href: '#quality-control' },
   { name: 'Contact Us', href: '#contact' },
 ];
 
 interface NavItem {
   name: string;
   href: string;
-  submenu?: { name: string; href: string; }[];
+  submenu?: { name: string; href: string }[];
 }
 
 const Navbar: React.FC = () => {
@@ -32,39 +25,35 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  // Handle scroll effect
+  // Scroll state
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 20);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle active section detection
+  // Active section state
   useEffect(() => {
     const handleActiveSection = () => {
-      const sections = document.querySelectorAll('[id]');
       const scrollPosition = window.scrollY + 100;
 
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        const sectionHeight = (section as HTMLElement).offsetHeight;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
-          setActiveSection(`#${sectionId}`);
+      for (const section of document.querySelectorAll<HTMLElement>('[id]')) {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          setActiveSection(`#${section.id}`);
+          break; // Found active section, no need to continue
         }
-      });
+      }
     };
 
     window.addEventListener('scroll', handleActiveSection);
     return () => window.removeEventListener('scroll', handleActiveSection);
   }, []);
 
-  // Close mobile menu when clicking outside
+  // Click outside to close mobile menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const navbar = document.getElementById('navbar');
@@ -77,65 +66,51 @@ const Navbar: React.FC = () => {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
 
-  // Smooth scroll to section
   const handleSectionClick = useCallback((href: string, e: React.MouseEvent) => {
     if (href.startsWith('#')) {
       e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        const offsetTop = (element as HTMLElement).offsetTop - 80;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+      const target = document.querySelector(href);
+      if (target) {
+        const top = (target as HTMLElement).offsetTop - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
       }
       setIsMenuOpen(false);
     }
   }, []);
 
-  // Handle mobile menu toggle
   const toggleMobileMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   }, []);
 
   return (
     <nav
       id="navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' 
-          : 'bg-white shadow-md py-4'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-white shadow-md py-4'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <div className="flex items-center flex-shrink-0">
-            <Link 
-              href="/" 
-              className="flex items-center group transition-all duration-300 hover:scale-105"
-            >
-              <div className="relative overflow-hidden rounded-lg">
-                <Image 
-                  src="/images/logo-scrolled.png" 
-                  alt="NR Allied Logo" 
-                  width={isScrolled ? 60 : 70} 
-                  height={isScrolled ? 60 : 70}
-                  className="transition-all duration-300 group-hover:scale-110"
-                  priority
-                />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-[#0476D9]/20 via-transparent to-[#0456B3]/10 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                <div className="absolute inset-0 rounded-lg ring-2 ring-[#0476D9]/0 group-hover:ring-[#0476D9]/30 transition-all duration-300" />
-              </div>
-            </Link>
-          </div>
+          <Link href="/" className="flex items-center group transition-all hover:scale-105">
+            <div className="relative overflow-hidden ">
+              <Image
+                src="/images/logo-scrolled.png"
+                alt="NR Allied Logo"
+                width={isScrolled ? 60 : 70}
+                height={isScrolled ? 60 : 70}
+                className="transition-all duration-300 group-hover:scale-110"
+                priority
+              />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-[#0476D9]/20 via-transparent to-[#0456B3]/10 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              <div className="absolute inset-0 rounded-lg ring-2 ring-[#0476D9]/0 group-hover:ring-[#0476D9]/30 transition-all duration-300" />
+            </div>
+          </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-1">
             {sections.map((section) => (
               <NavLink
@@ -147,7 +122,7 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Toggle */}
           <div className="lg:hidden">
             <button
               onClick={toggleMobileMenu}
@@ -156,17 +131,17 @@ const Navbar: React.FC = () => {
               aria-expanded={isMenuOpen}
             >
               <div className="relative w-6 h-6">
-                <Menu 
-                  size={24} 
+                <Menu
+                  size={24}
                   className={`absolute inset-0 transition-all duration-300 ${
                     isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
-                  }`} 
+                  }`}
                 />
-                <X 
-                  size={24} 
+                <X
+                  size={24}
                   className={`absolute inset-0 transition-all duration-300 ${
                     isMenuOpen ? 'rotate-0 opacity-100' : 'rotate-180 opacity-0'
-                  }`} 
+                  }`}
                 />
               </div>
             </button>
@@ -174,9 +149,11 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
           <div className="mt-4 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div className="py-2">
               {sections.map((section) => (
@@ -193,7 +170,6 @@ const Navbar: React.FC = () => {
                   {section.name}
                 </a>
               ))}
-              {/* Mobile CTA */}
               <div className="px-4 py-3 border-t border-gray-100">
                 <a
                   href="#contact"
@@ -211,7 +187,7 @@ const Navbar: React.FC = () => {
   );
 };
 
-// NavLink component for desktop navigation
+// Desktop NavLink
 interface NavLinkProps {
   section: NavItem;
   isActive: boolean;
@@ -238,35 +214,36 @@ const NavLink: React.FC<NavLinkProps> = ({ section, isActive, onClick }) => {
           {section.name}
         </span>
         {section.submenu && (
-          <ChevronDown 
-            size={16} 
+          <ChevronDown
+            size={16}
             className={`relative z-10 transition-all duration-300 ${
               isHovered ? 'rotate-180 translate-x-0.5' : 'rotate-0'
-            }`} 
+            }`}
           />
         )}
-        
-        {/* Animated background */}
-        <div className={`absolute inset-0 bg-gradient-to-r from-[#0476D9]/5 to-[#0456B3]/5 transform transition-all duration-500 ${
-          isHovered ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-        }`} />
-        
-        {/* Active indicator */}
-        <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#0476D9] to-[#0456B3] transition-all duration-300 ${
-          isActive ? 'w-8' : 'w-0'
-        }`} />
-        
-        {/* Hover glow effect */}
-        <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-[#0476D9]/10 to-[#0456B3]/10 blur-xl transition-all duration-500 ${
-          isHovered ? 'opacity-50 scale-110' : 'opacity-0 scale-95'
-        }`} />
+        <div
+          className={`absolute inset-0 bg-gradient-to-r from-[#0476D9]/5 to-[#0456B3]/5 transform transition-all duration-500 ${
+            isHovered ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        />
+        <div
+          className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#0476D9] to-[#0456B3] transition-all duration-300 ${
+            isActive ? 'w-8' : 'w-0'
+          }`}
+        />
+        <div
+          className={`absolute inset-0 rounded-xl bg-gradient-to-r from-[#0476D9]/10 to-[#0456B3]/10 blur-xl transition-all duration-500 ${
+            isHovered ? 'opacity-50 scale-110' : 'opacity-0 scale-95'
+          }`}
+        />
       </a>
 
-      {/* Submenu (if exists) */}
       {section.submenu && (
-        <div className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${
-          isHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
-        }`}>
+        <div
+          className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${
+            isHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+          }`}
+        >
           {section.submenu.map((item) => (
             <a
               key={item.href}

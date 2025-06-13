@@ -1,85 +1,103 @@
 import React from 'react';
-import SectionTitle from '../SectionTitle';
-import AnimatedSection from '../AnimatedSection';
-import ProductionCounter from '../ProductionCounter';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
+import SectionTitle from '../SectionTitle';
 
-
-const AboutSection: React.FC = () => {
+const AboutUsSection = () => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-[#F0F4F9] to-[#95D7FA]">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="container mx-auto px-4 py-12">
+        {/* Header */}
         <SectionTitle
-          title="About NR Allied"
-          subtitle="Our journey from a single manufacturing unit to an umbrella corporation with multiple specialized divisions."
+          title="ABOUT US"
+          subtitle=" Our journey from a single manufacturing unit to an umbrella corporation with multiple 
+            specialized divisions."
         />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <AnimatedSection direction="right">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
-              <p className="text-gray-600 mb-6">
-                To be the leading provider of innovative and sustainable plastic packaging solutions in India, fostering long-term partnerships with our clients through quality, reliability, and continuous improvement.
+       
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 items-start mb-10">
+          {/* Left Column */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-xl font-bold text-slate-800 mb-3">Our Vision</h2>
+              <p className="text-slate-600 leading-relaxed text-md">
+                To become India&aposs most trusted plastic packaging group by delivering scalable, 
+                sustainable, and innovative solutions—while nurturing long-term partnerships 
+                based on quality, speed, and reliability.
               </p>
-              
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
-              <p className="text-gray-600 mb-6">
-                We are committed to delivering high-quality plastic packaging products while minimizing environmental impact through our RPET initiatives and sustainable practices. We strive to exceed customer expectations through innovation and operational excellence.
-              </p>
-              
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Values</h3>
-              <ul className="list-disc list-inside text-gray-600 mb-6">
-                <li>Quality and Excellence</li>
-                <li>Innovation and Adaptability</li>
-                <li>Environmental Responsibility</li>
-                <li>Customer Partnership</li>
-                <li>Team-First Work Culture</li>
-              </ul>
-              
-              <Button >Learn More About Us</Button>
             </div>
-          </AnimatedSection>
-          
-          <AnimatedSection direction="left">
-            <div className="space-y-6">
-              <div className="relative">
-                <Image
-                  src="https://images.pexels.com/photos/802221/pexels-photo-802221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                  alt="Factory" 
-                  className="rounded-lg shadow-md w-full h-64 object-cover"
-                  width={1260}
-                  height={750}
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-                  <span className="text-2xl font-bold text-gray-800">Since 2016</span>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Group Companies</h3>
-                  <span className="text-4xl font-bold text-[#0476D9]">6</span>
-                </div>
-                
-                <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">MT per Month</h3>
-                  <span className="text-4xl font-bold text-[#0476D9]">500+</span>
-                </div>
-                
-                <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Clients</h3>
-                  <span className="text-4xl font-bold text-[#0476D9]">100+</span>
-                </div>
-                
-                <ProductionCounter dailyCapacity={17} />
+
+            <div>
+              <h2 className="text-xl font-bold text-slate-800 mb-3">Our Mission</h2>
+              <p className="text-slate-600 leading-relaxed text-md">
+                We aim to lead the industry with high-capacity, precision-driven plastic packaging 
+                by combining cutting-edge technology with environmentally responsible practices. 
+                Through our RPET initiatives and specialized group divisions, we strive to deliver 
+                exceptional value to every partner we serve.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold text-slate-800 mb-3">Our Values</h2>
+              <div className="space-y-2">
+                {[
+                  'Excellence in Quality & Output',
+                  'Innovation through Automation',
+                  'Commitment to Sustainable Manufacturing',
+                  'Transparent Client Relationships',
+                  'Team-Driven Growth Culture'
+                ].map((value, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="text-slate-700 text-md">{value}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </AnimatedSection>
+          </div>
+
+          {/* Right Column - Leadership Image */}
+          <div className="lg:sticky lg:top-8">
+            <Card className="overflow-hidden shadow-lg border-0">
+              <CardContent className="p-0">
+                <div className="relative w-full h-[430px]">
+                  <Image
+                    src="/images/team/leader.png"
+                    alt="Leadership"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-md"
+                    priority
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Statistics */}
+        <div className="grid md:grid-cols-2 gap-6 mt-12">
+          <Card className="bg-white/70 backdrop-blur-md border-slate-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-lg font-semibold text-slate-700 mb-3">Group Companies</h3>
+              <div className="text-4xl font-bold text-blue-600 mb-2">7</div>
+              <p className="text-slate-600 text-md">Specialized divisions serving diverse markets</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/70 backdrop-blur-md border-slate-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-lg font-semibold text-slate-700 mb-3">Daily Capacity</h3>
+              <div className="text-3xl font-bold text-pink-500 mb-1">17 lakh</div>
+              <div className="text-xl font-semibold text-pink-400">bottles</div>
+              <p className="text-slate-600 text-md mt-2">High-volume production capability</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default AboutSection;
+export default AboutUsSection;

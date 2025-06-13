@@ -88,9 +88,9 @@ const HomeHero: React.FC = () => {
 
   <Link href="#our-journey" className="w-full sm:w-auto">
     <Button 
-      variant="default" 
+
       size="lg"
-      className="w-full sm:w-auto border-2 border-gray-300 hover:border-gray-400 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-50 hover:scale-105 active:scale-95 flex items-center justify-center"
+         className="w-full sm:w-auto bg-gradient-to-r from-[#131313] to-[#00070f] hover:from-[#090b0c] hover:to-[#00030a] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
     >
       <Play className="mr-2 w-4 h-4" />
       Watch Our Story
