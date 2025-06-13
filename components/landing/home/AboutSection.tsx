@@ -9,7 +9,8 @@ const AboutUsSection = () => {
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <SectionTitle
-          title="ABOUT US"
+          title="ABOUT "
+          highlight='Us'
           subtitle=" Our journey from a single manufacturing unit to an umbrella corporation with multiple 
             specialized divisions."
         />

@@ -13,7 +13,8 @@ const ContactUsSection = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <SectionTitle
-          title="CONTACT US"
+          title="CONTACT "
+          highlight='Us'
           subtitle="  Whether you have questions, need a quote, or just want to connect, we’d love to hear from you."
         />
         

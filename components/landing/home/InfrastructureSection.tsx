@@ -51,7 +51,8 @@ const InfrastructureSection: React.FC = () => {
     <section id="infrastructure" className="py-20 bg-gradient-to-r from-[#F0F4F9] to-[#95D7FA] overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <SectionTitle
-          title="Our Infrastructure"
+          title="Our "
+          highlight="Infrastructure"
           subtitle="State-of-the-art manufacturing facilities equipped with the latest technology"
         />
 
