@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { ArrowDown, Play, Award, Users, Factory } from 'lucide-react'
+import {Play, Award, Factory } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -72,7 +72,7 @@ const HomeHero: React.FC = () => {
 
               <p className="text-l md:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl">
                 NR Allied is a diversified group of companies united by one mission — to lead innovation in plastic packaging with{' '}
-                <span className="font-semibold text-gray-800">reliability, scale, and sustainability</span> at its core. Since our inception, we've expanded through specialized entities, each contributing to our collective strength and growing daily production capacity.
+                <span className="font-semibold text-gray-800">reliability, scale, and sustainability</span> at its core. Since our inception, we&apos;ve expanded through specialized entities, each contributing to our collective strength and growing daily production capacity.
               </p>
 
               {/* Action Buttons */}
