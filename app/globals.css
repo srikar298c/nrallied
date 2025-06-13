@@ -18,7 +18,7 @@
   font-style: normal;
 }
 :root {
-  --font-primary: 'Segoe UI Symbol', 'Fontspring', 'Inter', system-ui, sans-serif;
+  --font-primary: 'Segoe UI Symbol', 'Inter', system-ui, sans-serif;
 }
 
 @theme inline {
