@@ -58,7 +58,7 @@ const HomeHero: React.FC = () => {
                   We mold not just plastic {''}
                 </span>
                 <span
-                  className=" bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] bg-clip-text text-transparent text-7xl md:text-8xl lg:text-9xl xl:text-10xl transform "
+                  className=" bg-gradient-to-r pl-3.5 from-[#F14472] via-[#AB64F2] to-[#F24C26] bg-clip-text text-transparent text-7xl md:text-8xl lg:text-9xl xl:text-10xl transform "
                   style={{ 
                     fontFamily: 'TakenByVultures, cursive',
                     fontWeight: 400,

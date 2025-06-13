@@ -1,14 +1,8 @@
 import './globals.css';
 import 'animate.css';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import Navbar from '@/components/landing/common/Navbar';
 import Footer from '@/components/landing/common/Footer';
-
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'NR Allied - Leading Plastic Packaging Manufacturing | 17L+ Bottles Daily',
@@ -71,7 +65,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0476D9" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={`${inter.className} bg-gradient-to-br from-[#011532] to-[#012951] text-white antialiased`}>
+      <body>
         <Navbar />
         <main className="relative z-0">{children}</main>
         <Footer />
