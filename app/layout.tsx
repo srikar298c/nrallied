@@ -65,7 +65,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0476D9" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body>
+      <body className='overflow-x-hidden'>
         <Navbar />
         <main className="relative z-0">{children}</main>
         <Footer />
