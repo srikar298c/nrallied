@@ -67,7 +67,7 @@ export default function ContactCard() {
         variants={ANIMATION_VARIANTS.container}
         initial="initial"
         animate="animate"
-        className="bg-gradient-to-br from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
+        className="min-h-screen bg-gradient-to-br from-[#011532] to-[#012951] text-white p-8 rounded-3xl shadow-2xl max-w-lg mx-auto mt-10 font-sans relative overflow-hidden"
         role="main"
         aria-label="Contact card for Yogesh Goyal"
       >
