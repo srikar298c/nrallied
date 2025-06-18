@@ -130,6 +130,14 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.font-vultures {
+  font-family: 'TakenByVultures', cursive;
+}
+
+.font-fontspring {
+  font-family: 'Fontspring', sans-serif;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

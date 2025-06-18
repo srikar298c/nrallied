@@ -14,7 +14,7 @@ import ContactUsSection from '@/components/landing/home/Contact';
  */
 export default function Home() {
   return (
-    <main className="scroll-smooth min-h-screen bg-gray-50 overflow-hidden">
+    <main className="scroll-smooth min-h-screen overflow-hidden">
          <section id="home">
       <HomeHero/>
       </section>
