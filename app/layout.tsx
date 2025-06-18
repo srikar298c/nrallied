@@ -1,10 +1,11 @@
+
 import './globals.css';
 import 'animate.css';
 import type { Metadata } from 'next';
-import Navbar from '@/components/landing/common/Navbar';
-import Footer from '@/components/landing/common/Footer';
+
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://nrallied.com'),
   title: 'NR Allied - Leading Plastic Packaging Manufacturing | 17L+ Bottles Daily',
   description: 'NR Allied specializes in sustainable plastic packaging solutions with 6 specialized units producing 17L+ bottles daily. RPET & FSSAI approved manufacturing for FMCG and pharmaceutical brands.',
   keywords: 'plastic packaging, manufacturing, RPET, FSSAI approved, bottles, containers, sustainable packaging, FMCG, pharmaceuticals',
@@ -44,12 +45,14 @@ export const metadata: Metadata = {
     description: 'We mold not just plastic — but partnerships. Sustainable packaging solutions with 17L+ daily capacity.',
     images: ['/og-image.jpg'],
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+ 
 };
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+}
+
 
 export default function RootLayout({
   children,
@@ -65,11 +68,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#0476D9" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className='overflow-x-hidden'>
-        <Navbar />
-        <main className="relative z-0">{children}</main>
-        <Footer />
+      <body>
+        {children}
       </body>
     </html>
   );
-}
+}   
