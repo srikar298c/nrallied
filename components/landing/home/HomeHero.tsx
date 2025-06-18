@@ -71,7 +71,7 @@ export default function HomeHero() {
                 <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 block -rotate-1">
                   We mold not just plastic
                 </span>
-                <span className="text-4xl md:text-6xl lg:text-7xl xl:text-9xl font-vultures text-transparent bg-clip-text bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] block rotate-2 pl-5">
+                <span className="text-7xl md:text-7xl lg:text-8xl xl:text-9xl font-vultures text-transparent bg-clip-text bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] block rotate-2 pl-5">
                   but partnerships.
                 </span>
               </h1>

@@ -11,8 +11,8 @@ export const timelineItems: TimelineItem[] = [
   {
     year: 2016,
     name: 'NR Polymers',
-    description: 'Located in Kattedan, Hyderabad, specializes in SBM',
-    capacity: 'Current production capacity of 1.5lakh jars per day (4.5 million units per month)',
+    description: 'Located in Kattedan, Hyderabad, specializes in SBM ( Stretch Blow Machine) production of PET bottles',
+    capacity: 'Current production capacity of 1.5lakh jars per day (4.5 million units per month) ',
   },
   {
     year: 2018,
