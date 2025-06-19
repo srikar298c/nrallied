@@ -1,10 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
+import Image from 'next/image'
 import { CheckCircle } from 'lucide-react'
 import SectionTitle from '../SectionTitle'
-import AnimatedSection from '../AnimatedSection'
-import Image from 'next/image'
 
 interface Machine {
   src: string
@@ -13,14 +12,14 @@ interface Machine {
 }
 
 const machines: Machine[] = [
-  { src: '/images/asb-70-dpw.png', label: 'ASB 70 DPW Machine' },
-  { src: '/images/asb-50-mb.png', label: 'ASB 50 MB Machine' },
-  { src: '/images/techno-robo-packing.png', label: 'Techno Robo Automatic Packing Machine' },
   { src: '/images/kaesar-air-compressor.png', label: 'Kaesar Air Compressor' },
+  { src: '/images/asb-50-mb.png', label: 'ASB 50 MB Machine' },
+  { src: '/images/upcoming-asb-70dph.png', label: 'Machine ASB 70DPH', upcoming: true },
+  { src: '/images/techno-robo-packing.png', label: 'Techno Robo Automatic Packing Machine' },
   { src: '/images/hlda-automation.png', label: 'HILDA Automation System' },
   { src: '/images/landt.png', label: 'L&T PET Preform Line' },
+  { src: '/images/asb-70-dpw.png', label: 'ASB 70 DPW Machine' },
   { src: '/images/shyam-plast.png', label: 'SHYAM Plast Machine' },
-  { src: '/images/upcoming-asb-70dph.png', label: 'Upcoming Machine ASB 70DPH', upcoming: true },
 ]
 
 const features = [
@@ -42,108 +41,99 @@ const features = [
   {
     title: 'Production Capacity',
     description:
-      'With a combined output of over 1.7 million bottles per day, NR Allied is equipped to manage large-scale packaging demands across multiple sectors with speed and reliability.',
+      'With a combined output of over 17 lakh bottles per day, NR Allied is equipped to manage large-scale packaging demands across multiple sectors with speed and reliability.',
   },
 ]
 
-const InfrastructureSection: React.FC = () => {
+export default function InfrastructureSection() {
+  const [showAllMobile, setShowAllMobile] = useState(false)
+
+  // For mobile bottom row, show first 2 or all 4 if toggled
+  const mobileBottom = showAllMobile ? machines.slice(4) : machines.slice(4, 6)
+
+  const ImageCard = ({ m }: { m: Machine }) => (
+    <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+      <Image src={m.src} alt={m.label} fill className="object-contain" />
+      <span className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 bg-white text-xs px-3 py-1 rounded-md outline outline-1 outline-gray-400">
+        {m.label}
+      </span>
+      {m.upcoming && (
+        <span className="absolute top-2 right-2 bg-pink-600 text-white text-[0.65rem] px-2 py-0.5 rounded">
+          UPCOMING
+        </span>
+      )}
+    </div>
+  )
+
   return (
-    <section
-      id="infrastructure"
-      className="py-20 bg-gradient-to-r from-[#F0F4F9] to-[#95D7FA] overflow-visible"
-    >
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="bg-gradient-to-b from-[#F0F4F9] to-[#95D7FA] py-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
         <SectionTitle
           title="Our "
           highlight="Infrastructure"
-          subtitle="State-of-the-art manufacturing facilities equipped with the latest technology"
+          subtitle="Discover our state‑of‑the‑art manufacturing facilities, meticulously equipped with the latest technology to ensure unparalleled precision, efficiency, and quality in every product."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
-          {/* LEFT COLUMN */}
-          <AnimatedSection direction="right">
-            <div>
-              {/* Top 4 machines: 2×2 grid */}
-              <div className="grid grid-cols-2 gap-6">
-              {machines.slice(0, 4).map(({ src, label }, idx) => (
-                <div
-                key={idx}
-                className="rounded-lg overflow-hidden shadow-md border bg-white flex flex-col items-center p-4"
-                >
-                <div className="w-full h-[180px] relative">
-                  <Image
-                  src={src}
-                  alt={label}
-                  fill
-                  className="object-contain p-2"
-                  />
-                </div>
-                <p className="mt-3 text-center text-sm font-medium text-gray-800">
-                  {label}
-                </p>
-                </div>
-              ))}
-              </div>
+        {/* 3‑column grid with larger center */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-12 mt-12 items-start"
+        >
+          {/* Left images */}
+          <div className="flex flex-col items-center space-y-8">
+            {machines.slice(0, 2).map((m, i) => (
+              <ImageCard key={i} m={m} />
+            ))}
+          </div>
 
-              {/* Next 2 machines: horizontal row */}
-              <div className="mt-20 flex justify-evenly space-x-6">
-              {machines.slice(4, 8).map(({ src, label, upcoming }, idx) => (
-                  <div
-                  key={idx + 4}
-                  className="relative rounded-lg overflow-hidden shadow-md border bg-white flex flex-col items-center p-4 group"
-                >
-                  {upcoming && (
-                    <span className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold uppercase px-2 py-1 rounded">
-                      Upcoming
-                    </span>
-                  )}
-                  <div className="w-full h-[180px] relative">
-                    <Image
-                      src={src}
-                      alt={label}
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <p className="mt-2 text-center text-sm font-medium text-gray-800">
-                    {label}
+          {/* Center content (wider on lg) */}
+          <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-8 text-left">
+            {features.map((f, i) => (
+              <div className="flex items-start space-x-4" key={i}>
+                <CheckCircle className="text-[#0476D9] mt-1" size={24} />
+                <div>
+                  <h4 className="font-semibold text-gray-800 text-lg">
+                    {f.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                    {f.description}
                   </p>
                 </div>
-              ))}
               </div>
-            </div>
-          </AnimatedSection>
-
-          {/* RIGHT COLUMN */}
-          <div className="relative">
-            <AnimatedSection direction="left">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                  Manufacturing Capabilities
-                </h3>
-                <div className="space-y-6">
-                  {features.map(({ title, description }, idx) => (
-                    <div className="flex items-start" key={idx}>
-                      <CheckCircle className="text-[#0476D9] mr-3 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-800">
-                          {title}
-                        </h4>
-                        <p className="text-gray-600">{description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Bottom right: last 2 machines in a row */}
-            
+            ))}
           </div>
+
+          {/* Right images */}
+          <div className="flex flex-col items-center space-y-8">
+            {machines.slice(2, 4).map((m, i) => (
+              <ImageCard key={i} m={m} />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom images */}
+        {/* Desktop: show all */}
+        <div className="hidden lg:flex flex-wrap justify-center gap-10 mt-16">
+          {machines.slice(4).map((m, i) => (
+            <ImageCard key={i} m={m} />
+          ))}
+        </div>
+
+        {/* Mobile: sliced + see more */}
+        <div className="lg:hidden mt-12">
+          <div className="flex flex-wrap justify-center gap-10">
+            {mobileBottom.map((m, i) => (
+              <ImageCard key={i} m={m} />
+            ))}
+          </div>
+
+          <button
+            onClick={() => setShowAllMobile(!showAllMobile)}
+            className="mt-8 px-6 py-2 bg-gradient-to-r from-[#0476D9] to-[#0456B3] text-white rounded-full hover:scale-105 transition-transform"
+          >
+            {showAllMobile ? 'Show Less' : 'See More Machines'}
+          </button>
         </div>
       </div>
     </section>
   )
 }
-
-export default InfrastructureSection

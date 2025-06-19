@@ -15,6 +15,7 @@ const CLIENT_LOGOS = [
 
 ]
 
+
 export default function HomeHero() {
   
   
@@ -36,7 +37,7 @@ export default function HomeHero() {
         <span className="text-3xl font-bold md:text-4xl lg:text-5xl leading-snug">
           We mold not just plastic — but
         </span>
-        <span className="pl-[20px] text-[2.5rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7rem] xl:text-[8rem] font-vultures text-transparent bg-clip-text bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] leading-[0.1] ">
+        <span className="pl-[20px] text-[6rem] sm:text-[6rem] md:text-[7rem] lg:text-[7rem] xl:text-[8rem] font-vultures text-transparent bg-clip-text bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] leading-[0.1] ">
           partnerships.
         </span>
           </h1>
@@ -70,27 +71,32 @@ export default function HomeHero() {
       </div>
 
       {/* Carousel */}
-      <div className="px-4 sm:px-6 lg:px-8 mb-16">
-        <p className="text-center text-gray-800 text-base md:text-sm font-semibold uppercase tracking-wide mb-6">
-          Trusted by leading brands across India
-        </p>
-        <div className="w-full max-w-6xl mx-auto flex flex-wrap justify-center gap-36 items-center px-8 py-4 bg-transparent">
-          {CLIENT_LOGOS.map((logo, idx) => (
+     {/* Carousel */}
+<div className="overflow-hidden w-full max-w-6xl mx-auto px-8 mb-16 relative">
+  <p className="text-center text-gray-800 text-base md:text-sm font-semibold uppercase tracking-wide mb-6">
+    Trusted by leading brands across India
+  </p>
+
+  <div className="relative w-full overflow-hidden">
+    <div className="animate-scroll flex gap-24 w-max">
+      {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, idx) => (
         <div
           key={idx}
-          className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center"
+          className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center"
         >
           <Image
             src={logo.src}
             alt={logo.alt}
-            width={48}
-            height={48}
+            width={80}
+            height={80}
             className="object-contain w-full h-full"
           />
         </div>
-          ))}
-        </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Scroll Down */}
       <button

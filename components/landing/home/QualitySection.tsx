@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Shield, CheckCircle, Microscope, Recycle, FileCheck, Target } from 'lucide-react';
+import SectionTitle from '../SectionTitle';
 
 /**
  * Quality Control section highlighting certifications and processes
@@ -40,14 +41,7 @@ export function QualitySection() {
     }
   ];
 
-  const certifications = [
-    'FSSAI Approved',
-    'BIS Certified',
-    'ISO Compliant',
-    'Food Grade Safety',
-    'Hygiene Standards',
-    'Environmental Compliance'
-  ];
+  
 
   return (
     <section className="py-24 bg-gradient-to-br from-[#F0F4F9] via-white to-[#95D7FA]/20">
@@ -59,22 +53,21 @@ export function QualitySection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Quality Control
-            <span className="block bg-gradient-to-r from-[#F14472] via-[#AB64F2] to-[#F24C26] bg-clip-text text-transparent">
-              Excellence
-            </span>
-          </h2>
+          <SectionTitle
+          title="Quality Control "
+          highlight="Excellence"
+          subtitle=""
+        />
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Our commitment to quality is unwavering, with multi-stage quality control systems, 
             certified processes, and sustainability-focused manufacturing practices.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1  gap-12">
           {/* Quality features */}
           <div className="lg:col-span-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {qualityFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -98,48 +91,7 @@ export function QualitySection() {
           </div>
 
           {/* Certifications sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-1"
-          >
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/20 shadow-sm p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
-                Our Certifications
-              </h3>
-              <div className="space-y-4">
-                {certifications.map((cert, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center p-3 bg-gradient-to-r from-[#0476D9]/5 to-[#AB64F2]/5 rounded-lg border border-[#0476D9]/10"
-                  >
-                    <div className="w-2 h-2 bg-gradient-to-r from-[#0476D9] to-[#AB64F2] rounded-full mr-3" />
-                    <span className="text-gray-700 font-medium text-sm">{cert}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Additional highlight */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 p-6 bg-gradient-to-br from-[#0476D9]/10 to-[#AB64F2]/10 rounded-xl border border-[#0476D9]/20"
-            >
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                Sanitary Facility Layout
-              </h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Our facilities feature sanitary layout design with comprehensive process mapping, 
-                ensuring the highest standards of hygiene and safety throughout production.
-              </p>
-            </motion.div>
-          </motion.div>
+          
         </div>
       </div>
     </section>
