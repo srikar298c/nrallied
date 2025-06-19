@@ -1,66 +1,204 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import SectionTitle from '../SectionTitle';
+import { appendToGoogleSheets } from '@/lib/google-sheets';
+import toast from 'react-hot-toast';
 
-const ContactUsSection = () => {
+const inquiryTypes = [
+  'Product Inquiry',
+  'Partnership Opportunity',
+  'Technical Support',
+  'General Question',
+  'Custom Solution',
+  'Other',
+];
+
+export default function ContactUsSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    inquiryType: '',
+    message: '',
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await appendToGoogleSheets(formData);
+      toast.success("Thank you for reaching out. We'll be in touch soon!");
+      setFormData({
+        company: '',
+        name: '',
+        email: '',
+        phone: '',
+        inquiryType: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      toast.error('Something went wrong. Please try again later.');
+    }
+  };
+
   return (
-    <div id="contact" className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
+    <section id="contact" className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <SectionTitle
           title="CONTACT "
-          highlight='Us'
-          subtitle="  Whether you have questions, need a quote, or just want to connect, we’d love to hear from you."
+          highlight="Us"
+          subtitle="Whether you have questions, need a quote, or just want to connect, we'd love to hear from you."
         />
-        
 
-        {/* Contact Form */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
-            <CardContent className="p-8">
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Name */}
-                <div className="col-span-1">
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
-                  <Input type="text" placeholder="Your Name" />
-                </div>
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-center mt-8">
+          {/* Image */}
+          <div className="lg:w-1/2 w-full relative h-[560px] max-w-[456px] mx-auto">
+            <Image
+              src="/images/cta-bottom-image.png"
+              alt="Contact Us"
+              fill
+              className="object-cover rounded-2xl shadow-xl"
+              priority
+            />
+          </div>
 
-                {/* Email */}
-                <div className="col-span-1">
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                  <Input type="email" placeholder="you@example.com" />
-                </div>
+          {/* Contact Form */}
+          <div className="lg:w-1/2 w-full">
+            <Card className="shadow-xl border-0 bg-white/70 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
+                      Name
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  {/* Company */}
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1">
+                      Company
+                    </label>
+                    <Input
+                      id="company"
+                      name="company"
+                      type="text"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Your Company"
+                      required
+                    />
+                  </div>
 
-                {/* Subject (full width) */}
-                <div className="col-span-1 md:col-span-2">
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Subject</label>
-                  <Input type="text" placeholder="Subject of your message" />
-                </div>
 
-                {/* Message (full width) */}
-                <div className="col-span-1 md:col-span-2">
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                  <Textarea rows={5} placeholder="Write your message here..." />
-                </div>
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
 
-                {/* Button (full width) */}
-                <div className="col-span-1 md:col-span-2 text-center mt-4">
-                  <Button type="submit" className="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700">
-                    Send Message
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                  {/* Phone */}
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">
+                      Phone
+                    </label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Your Phone Number"
+                      required
+                    />
+                  </div>
+
+                  {/* Inquiry Type */}
+                  <div className="md:col-span-2">
+                    <label htmlFor="inquiryType" className="block text-sm font-medium text-slate-700 mb-1">
+                      Inquiry Type
+                    </label>
+                    <Input
+                      id="inquiryType"
+                      name="inquiryType"
+                      type="text"
+                      list="inquiry-types"
+                      value={formData.inquiryType}
+                      onChange={handleChange}
+                      placeholder="Select Inquiry Type"
+                      required
+                    />
+                    <datalist id="inquiry-types">
+                      {inquiryTypes.map((type) => (
+                        <option key={type} value={type} />
+                      ))}
+                    </datalist>
+                  </div>
+
+                  {/* Message */}
+                  <div className="md:col-span-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
+                      placeholder="Write your message here..."
+                      required
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="md:col-span-2 text-center mt-4">
+                    <Button
+                      type="submit"
+                      className="px-8 py-3 text-white bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 rounded-xl shadow-lg transform transition-all hover:scale-105"
+                    >
+                      Let&apos;s Build Together
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default ContactUsSection;
+}

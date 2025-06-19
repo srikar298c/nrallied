@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SectionTitle from '../SectionTitle';
+import Link from 'next/link';
  // Assuming SectionTitle is in the same 'components' directory now
 
 interface Industry {
@@ -113,9 +114,12 @@ export default function IndustrySection() {
                       {industry.description}
                     </p>
                   </div>
-                  <button className="self-start px-6 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-base font-medium">
+                  <Link
+                    href="#contact"
+                    className="self-start px-6 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-base font-medium inline-block"
+                  >
                     Contact Us
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
