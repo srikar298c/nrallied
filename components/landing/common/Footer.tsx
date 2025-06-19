@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0D0D0D] text-white pt-16 pb-4">
+    <footer className="bg-[#111827] text-white pt-16 pb-4">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-8">
           {/* Branding */}
@@ -48,7 +48,7 @@ const Footer = () => {
                 { href: '#about', label: 'About Us' },
                 { href: '#our-journey', label: 'Our Journey' },
                 { href: '#infrastructure', label: 'Infrastructure' },
-                { href: '#quality-control', label: 'Quality Control' },
+                { href: '#industries', label: 'Industries' },
                 { href: '#contact', label: 'Contact Us' },
               ].map(({ href, label }) => (
                 <li key={label}>
@@ -66,11 +66,12 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               {[
                 'NR Industries',
+                'NR Polymers',
+                'NR Beverages',
                 'NR Udhyog LLP',
                 'Surya Polymers',
                 'Surana Enterprises',
-                'NR Polymers',
-                'NR Beverages',
+                'Elite Agro Brew',
               ].map((company) => (
                 <li key={company}>
                   <Link href="#divisions" className="hover:text-white transition-colors">
@@ -87,12 +88,12 @@ const Footer = () => {
             <address className="not-italic text-gray-400 space-y-2">
               <p className="font-medium">Address:</p>
               <p>Sy No -45, Road no 25, IDA Kattedan, R.R District, 500077. Telangana</p>
-              <p>
+              {/* <p>
                 Phone:{' '}
                 <a href="tel:+919866682202" className="hover:text-white">
                   +91 9866682202
                 </a>
-              </p>
+              </p> */}
               <p>
                 Email:{' '}
                 <a href="mailto:nrcommercialspvtltd@gmail.com" className="hover:text-white">
