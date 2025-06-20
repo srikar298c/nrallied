@@ -6,7 +6,7 @@ export const timelineItems: TimelineItem[] = [
     year: 2016,
     name: 'NR Industries',
     description: 'Founded as a small bottle manufacturing unit',
-    capacity: 'Current Capacity: 7 lakh bottles/day ',
+    capacity: 'Current Capacity: 7 lakh IMFL bottles/day ',
   },
   {
     year: 2016,
