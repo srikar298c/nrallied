@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import SectionTitle from '../SectionTitle';
-import { appendToGoogleSheets } from '@/lib/google-sheets';
+//import { appendToGoogleSheets } from '@/lib/google-sheets';
 import toast from 'react-hot-toast';
 
 const inquiryTypes = [
@@ -36,26 +36,62 @@ export default function ContactUsSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    try {
-      await appendToGoogleSheets(formData);
+  //   try {
+  //     await appendToGoogleSheets(formData);
+  //     toast.success("Thank you for reaching out. We'll be in touch soon!");
+  //     setFormData({
+  //       company: '',
+  //       name: '',
+  //       email: '',
+  //       phone: '',
+  //       inquiryType: '',
+  //       message: '',
+  //     });
+  //   } catch (error) {
+  //     console.error('Contact form submission error:', error);
+  //     toast.error('Something went wrong. Please try again later.');
+  //   }
+  // };
+  //const scriptURL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec'; // your Apps Script URL
+  //https://script.google.com/macros/s/AKfycbwCrdj_SZ1AIEMO6KUvcxId2Z4Ffyn3IsrndUcy3MENs9yQVhg339qLvkBPUqdIWHO1/exec
+const scriptURL= "https://script.google.com/macros/s/AKfycbzmTMSTA2288M3LZy6fcRl13IMhIGd4hsBNxkSrCWPKAI6hDHtaa7O1RgtVDX3zuJ3b/exec";
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const formDataToSend = new FormData();
+  formDataToSend.append('name', formData.name);
+  formDataToSend.append('company', formData.company);
+  formDataToSend.append('email', formData.email);
+  formDataToSend.append('phone', formData.phone);
+  formDataToSend.append('inquiryType', formData.inquiryType);
+  formDataToSend.append('message', formData.message);
+
+  
+    fetch(scriptURL, {
+      method: 'POST',
+      body: formDataToSend,
+    })
+
+    .then(()=>{
       toast.success("Thank you for reaching out. We'll be in touch soon!");
       setFormData({
-        company: '',
         name: '',
+        company: '',
         email: '',
         phone: '',
         inquiryType: '',
         message: '',
-      });
-    } catch (error) {
-      console.error('Contact form submission error:', error);
-      toast.error('Something went wrong. Please try again later.');
-    }
-  };
-
+      })
+    })
+    .catch ((error) =>{
+    console.error('Contact form submission error:', error);
+    toast.error('Something went wrong. Please try again later.');
+  });
+};
   return (
     <section id="contact" className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
       <div className="container mx-auto px-4">

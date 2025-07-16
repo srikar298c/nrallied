@@ -1,82 +1,22 @@
 'use client'
 
+
+
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import SectionTitle from '../SectionTitle'
-
-interface CountUpProps {
-  end: number
-  duration?: number
-  decimals?: number
-  trigger?: boolean
-  suffix?: string
-}
-
-const CountUp: React.FC<CountUpProps> = ({
-  end,
-  duration = 2,
-  decimals = 0,
-  trigger = false,
-  suffix = '',
-}) => {
-  const [value, setValue] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const startTimeRef = useRef<number | null>(null)
-  const frameRef = useRef<number | null>(null)
-
-  const format = (n: number) =>
-    n.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix
-
-  const animate = () => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    startTimeRef.current = null
-    setValue(0)
-
-    const step = (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp
-      const elapsed = timestamp - startTimeRef.current
-      const progress = Math.min(elapsed / (duration * 1000), 1)
-      const easeOutCubic = 1 - Math.pow(1 - progress, 3)
-      setValue(end * easeOutCubic)
-
-      if (progress < 1) {
-        frameRef.current = requestAnimationFrame(step)
-      } else {
-        setValue(end)
-        setIsAnimating(false)
-      }
-    }
-
-    frameRef.current = requestAnimationFrame(step)
-  }
-
-  const reset = () => {
-    if (frameRef.current) cancelAnimationFrame(frameRef.current)
-    setValue(0)
-    setIsAnimating(false)
-  }
-
-  useEffect(() => {
-    if (trigger) animate()
-    else reset()
-
-    return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current)
-    }
-  }, [trigger, end, duration])
-
-  return <span className="tabular-nums">{format(value)}</span>
-}
 
 const AboutUsSection = () => {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
+  const [groupCompanies, setGroupCompanies] = useState(0)
+  const [dailyCapacity, setDailyCapacity] = useState(0)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
+        setIsVisible(entry.isIntersecting)
       },
       {
         threshold: 0.3,
@@ -84,12 +24,51 @@ const AboutUsSection = () => {
       }
     )
 
-    if (sectionRef.current) observer.observe(sectionRef.current)
+    const currentSection = sectionRef.current
+    if (currentSection) observer.observe(currentSection)
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current)
+      if (currentSection) observer.unobserve(currentSection)
     }
   }, [])
+
+  // Animate Group Companies
+  useEffect(() => {
+    if (!isVisible) return
+    const end = 7
+    const duration = 1500
+    const startTime = performance.now()
+
+    const step = (timestamp: number) => {
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      const value = Math.floor(progress * end)
+      setGroupCompanies(value)
+
+      if (progress < 1) requestAnimationFrame(step)
+      else setGroupCompanies(end)
+    }
+
+    requestAnimationFrame(step)
+  }, [isVisible])
+
+  // Animate Daily Capacity
+  useEffect(() => {
+    if (!isVisible) return
+    const end = 17
+    const duration = 2000
+    const startTime = performance.now()
+
+    const step = (timestamp: number) => {
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      const value = Math.floor(progress * end)
+      setDailyCapacity(value)
+
+      if (progress < 1) requestAnimationFrame(step)
+      else setDailyCapacity(end)
+    }
+
+    requestAnimationFrame(step)
+  }, [isVisible])
 
   return (
     <section ref={sectionRef} className="bg-gradient-to-b from-[#F0F4F9] to-[#95D7FA] py-20">
@@ -108,7 +87,7 @@ const AboutUsSection = () => {
 
         {/* Grid */}
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Left */}
+          {/* Left Section */}
           <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-slate-800 mb-2">Our Vision</h3>
@@ -136,9 +115,9 @@ const AboutUsSection = () => {
             </div>
           </div>
 
-          {/* Right */}
+          {/* Right Section */}
           <div className="flex flex-col items-center gap-8">
-            {/* Image without border */}
+            {/* Image */}
             <div className="relative w-full overflow-hidden rounded-xl clip-shape bg-[#005BCE]">
               <Image
                 src="/images/team/leadr.png"
@@ -163,7 +142,7 @@ const AboutUsSection = () => {
                   Group Companies
                 </p>
                 <p className="text-3xl font-bold text-blue-600 min-h-[2.5rem]">
-                  <CountUp end={7} trigger={isVisible} duration={1.5} />
+                  {groupCompanies}
                 </p>
                 <div className="w-full h-1 bg-blue-100 rounded-full mt-2 overflow-hidden">
                   <div
@@ -180,7 +159,7 @@ const AboutUsSection = () => {
                   Daily Capacity
                 </p>
                 <p className="text-3xl font-bold text-[#ED2B8B] min-h-[2.5rem]">
-                  <CountUp end={17} decimals={0} trigger={isVisible} duration={2} suffix=" lakh" />
+                  {dailyCapacity} lakh
                 </p>
                 <p className="text-xs text-slate-500 mt-1">bottles</p>
                 <div className="w-full h-1 bg-pink-100 rounded-full mt-2 overflow-hidden">
