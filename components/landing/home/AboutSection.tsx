@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState,useCallback } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import SectionTitle from '../SectionTitle'
 
@@ -27,13 +27,7 @@ const CountUp: React.FC<CountUpProps> = ({
   const format = (n: number) =>
     n.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix
 
-  const reset = useCallback(() => {
-    if (frameRef.current) cancelAnimationFrame(frameRef.current)
-    setValue(0)
-    setIsAnimating(false)
-  }, [])
- 
-  const animate = useCallback(() => {
+  const animate = () => {
     if (isAnimating) return
     setIsAnimating(true)
     startTimeRef.current = null
@@ -55,9 +49,14 @@ const CountUp: React.FC<CountUpProps> = ({
     }
 
     frameRef.current = requestAnimationFrame(step)
-  }, [duration, end, isAnimating])
+  }
 
- 
+  const reset = () => {
+    if (frameRef.current) cancelAnimationFrame(frameRef.current)
+    setValue(0)
+    setIsAnimating(false)
+  }
+
   useEffect(() => {
     if (trigger) animate()
     else reset()
@@ -65,7 +64,7 @@ const CountUp: React.FC<CountUpProps> = ({
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current)
     }
-  }, [trigger, animate, reset])
+  }, [trigger, end, duration])
 
   return <span className="tabular-nums">{format(value)}</span>
 }
@@ -75,7 +74,6 @@ const AboutUsSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const node = sectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true)
@@ -86,10 +84,10 @@ const AboutUsSection = () => {
       }
     )
 
-    if (node) observer.observe(node)
+    if (sectionRef.current) observer.observe(sectionRef.current)
 
     return () => {
-      if (node) observer.unobserve(node)
+      if (sectionRef.current) observer.unobserve(sectionRef.current)
     }
   }, [])
 
