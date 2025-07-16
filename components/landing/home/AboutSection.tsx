@@ -1,7 +1,5 @@
 'use client'
 
-
-
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import SectionTitle from '../SectionTitle'
@@ -120,7 +118,7 @@ const AboutUsSection = () => {
             {/* Image */}
             <div className="relative w-full overflow-hidden rounded-xl clip-shape bg-[#005BCE]">
               <Image
-                src="/images/team/leadr.png"
+                src="/images/team/leadr1.jpg"
                 alt="Leadership"
                 width={600}
                 height={400}

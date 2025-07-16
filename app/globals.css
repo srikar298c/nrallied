@@ -159,6 +159,9 @@
  display: none;
 }
 @keyframes scroll {
+  from {
+    transform: translateX(20%); /* Start from the right */
+  }
  
   to {
     transform: translateX(-20%);
