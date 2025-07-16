@@ -36,27 +36,6 @@ export default function ContactUsSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     await appendToGoogleSheets(formData);
-  //     toast.success("Thank you for reaching out. We'll be in touch soon!");
-  //     setFormData({
-  //       company: '',
-  //       name: '',
-  //       email: '',
-  //       phone: '',
-  //       inquiryType: '',
-  //       message: '',
-  //     });
-  //   } catch (error) {
-  //     console.error('Contact form submission error:', error);
-  //     toast.error('Something went wrong. Please try again later.');
-  //   }
-  // };
-  //const scriptURL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec'; // your Apps Script URL
-  //https://script.google.com/macros/s/AKfycbwCrdj_SZ1AIEMO6KUvcxId2Z4Ffyn3IsrndUcy3MENs9yQVhg339qLvkBPUqdIWHO1/exec
 const scriptURL= "https://script.google.com/macros/s/AKfycbzmTMSTA2288M3LZy6fcRl13IMhIGd4hsBNxkSrCWPKAI6hDHtaa7O1RgtVDX3zuJ3b/exec";
 
 const handleSubmit = async (e: React.FormEvent) => {
@@ -77,7 +56,16 @@ const handleSubmit = async (e: React.FormEvent) => {
     })
 
     .then(()=>{
-      toast.success("Thank you for reaching out. We'll be in touch soon!");
+      toast.success("Thank you for reaching out. We'll be in touch soon!",{
+        duration: 3000,
+        icon: '🚀',
+        style: {
+          background: 'green',
+          color: '#fff',
+          fontSize: '20px',
+        }
+      
+      });
       setFormData({
         name: '',
         company: '',
@@ -89,7 +77,15 @@ const handleSubmit = async (e: React.FormEvent) => {
     })
     .catch ((error) =>{
     console.error('Contact form submission error:', error);
-    toast.error('Something went wrong. Please try again later.');
+    toast.error('Something went wrong. Please try again later.',{
+      duration: 5000,
+      icon: '❌',
+      style: {
+          background: 'red',
+          color: '#fff',
+          fontSize: '20px',
+        }
+    });
   });
 };
   return (

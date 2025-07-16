@@ -145,7 +145,7 @@ export default function HomeHero() {
       {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, idx) => (
         <div
           key={idx}
-          className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center"
+          className="flex-shrink-0 w-24 h-24 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center"
         >
           <Image
             src={logo.src}
