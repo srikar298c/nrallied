@@ -23,6 +23,7 @@ const ProductionCounter: React.FC<ProductionCounterProps> = ({
   const productionPerSecond = totalDaily / (24 * 60 * 60);
   
   useEffect(() => {
+    const node = counterRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,13 +33,13 @@ const ProductionCounter: React.FC<ProductionCounterProps> = ({
       { threshold: 0.1 }
     );
     
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
+    if (node) {
+      observer.observe(node);
     }
     
     return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
   }, []);

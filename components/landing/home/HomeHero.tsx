@@ -5,7 +5,7 @@ import { Play, ArrowRight, ChevronDown, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState } from 'react'
 
 const CLIENT_LOGOS = [
   { src: '/images/carousel/kingfisher.png', alt: 'Kingfisher' },
@@ -18,15 +18,15 @@ const CLIENT_LOGOS = [
 
 
 export default function HomeHero() {
-  // const scrollTo = (id: string) => {
-  //   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  // }
-  const [mounted, setMounted] = useState(false)
-  const scrollTo = useCallback((id: string) => {
-    if (!mounted) return
-    const el = document.getElementById(id)
-    el?.scrollIntoView({ behavior: 'smooth' })
-  }, [mounted])
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+  // const [mounted, setMounted] = useState(false)
+  // const scrollTo = useCallback((id: string) => {
+  //   if (!mounted) return
+  //   const el = document.getElementById(id)
+  //   el?.scrollIntoView({ behavior: 'smooth' })
+  // }, [mounted])
 
 
  const [showVideo, setShowVideo] = useState(false);
