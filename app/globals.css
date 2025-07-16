@@ -147,3 +147,20 @@
     overflow-x: hidden;
   }
 }
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scrollbar-show::-webkit-scrollbar{
+ display: none;
+}
+@keyframes scroll {
+ 
+  to {
+    transform: translateX(-20%);
+  }
+}
