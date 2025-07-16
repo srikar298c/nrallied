@@ -76,7 +76,7 @@ export default function HomeHero() {
             Get in Touch <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </Button>
-        <Button asChild size="lg" variant="secondary" className="group bg-black text-white px-8 py-4 rounded-xl hover:scale-105 transition-transform">
+        <Button asChild size="lg" variant="secondary" className="group bg-black text-white px-8 py-4 rounded-xl hover:scale-105 transition-transform hover:text-black hover:bold">
           <Link href="#our-journey" onClick={(e) => { 
             e.preventDefault(); 
             setShowVideo(true); }}>

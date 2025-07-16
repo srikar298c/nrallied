@@ -28,7 +28,6 @@ export default function ContactUsSection() {
     inquiryType: '',
     message: '',
   });
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,9 +36,60 @@ export default function ContactUsSection() {
   };
 
 const scriptURL= "https://script.google.com/macros/s/AKfycbzmTMSTA2288M3LZy6fcRl13IMhIGd4hsBNxkSrCWPKAI6hDHtaa7O1RgtVDX3zuJ3b/exec";
+const [isLoading, setIsLoading] = useState(false);
+// const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+//   setIsLoading(true); // Start loading
+//   const formDataToSend = new FormData();
+//   formDataToSend.append('name', formData.name);
+//   formDataToSend.append('company', formData.company);
+//   formDataToSend.append('email', formData.email);
+//   formDataToSend.append('phone', formData.phone);
+//   formDataToSend.append('inquiryType', formData.inquiryType);
+//   formDataToSend.append('message', formData.message);
 
+  
+//     fetch(scriptURL, {
+//       method: 'POST',
+//       body: formDataToSend,
+//     })
+
+//     .then(()=>{
+//       toast.success("Thank you for reaching out. We'll be in touch soon!",{
+//         duration: 3000,
+//         icon: '🚀',
+//         style: {
+//           background: 'green',
+//           color: '#fff',
+//           fontSize: '20px',
+//         }
+      
+//       });
+//       setFormData({
+//         name: '',
+//         company: '',
+//         email: '',
+//         phone: '',
+//         inquiryType: '',
+//         message: '',
+//       })
+//     })
+//     .catch ((error) =>{
+//     console.error('Contact form submission error:', error);
+//     toast.error('Something went wrong. Please try again later.',{
+//       duration: 5000,
+//       icon: '❌',
+//       style: {
+//           background: 'red',
+//           color: '#fff',
+//           fontSize: '20px',
+//         },
+//     });
+//   });
+// };
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setIsLoading(true); // Start loading
 
   const formDataToSend = new FormData();
   formDataToSend.append('name', formData.name);
@@ -49,46 +99,46 @@ const handleSubmit = async (e: React.FormEvent) => {
   formDataToSend.append('inquiryType', formData.inquiryType);
   formDataToSend.append('message', formData.message);
 
-  
-    fetch(scriptURL, {
+  try {
+    await fetch(scriptURL, {
       method: 'POST',
       body: formDataToSend,
-    })
+    });
 
-    .then(()=>{
-      toast.success("Thank you for reaching out. We'll be in touch soon!",{
-        duration: 3000,
-        icon: '🚀',
-        style: {
-          background: 'green',
-          color: '#fff',
-          fontSize: '20px',
-        }
-      
-      });
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        inquiryType: '',
-        message: '',
-      })
-    })
-    .catch ((error) =>{
+    toast.success("Thank you for reaching out. We'll be in touch soon!", {
+      duration: 3000,
+      icon: '🚀',
+      style: {
+        background: 'green',
+        color: '#fff',
+        fontSize: '20px',
+      },
+    });
+
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      inquiryType: '',
+      message: '',
+    });
+  } catch (error) {
     console.error('Contact form submission error:', error);
-    toast.error('Something went wrong. Please try again later.',{
+    toast.error('Something went wrong. Please try again later.', {
       duration: 5000,
       icon: '❌',
       style: {
-          background: 'red',
-          color: '#fff',
-          fontSize: '20px',
-        }
+        background: 'red',
+        color: '#fff',
+        fontSize: '20px',
+      },
     });
-  });
-};
-  return (
+  } finally {
+    setIsLoading(false); // End loading
+  }
+};  
+return (
     <section id="contact" className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
       <div className="container mx-auto px-4">
         <SectionTitle
@@ -222,9 +272,36 @@ const handleSubmit = async (e: React.FormEvent) => {
                       type="submit"
                       className="px-8 py-3 text-white bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 rounded-xl shadow-lg transform transition-all hover:scale-105"
                     >
-                      Let&apos;s Build Together
+                       {isLoading ? (
+    <div className="flex items-center justify-center gap-2">
+      <svg
+        className="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+      Submitting...
+    </div>
+  ) : (
+    "Let’s Build Together"
+  )}
                     </Button>
                   </div>
+
                 </form>
               </CardContent>
             </Card>
