@@ -76,7 +76,7 @@ export default function HomeHero() {
             Get in Touch <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </Button>
-        <Button asChild size="lg" variant="secondary" className="group bg-black text-white px-8 py-4 rounded-xl hover:scale-105 transition-transform">
+        <Button asChild size="lg" variant="secondary" className="group bg-black text-white px-8 py-4 rounded-xl hover:scale-105 transition-transform hover:text-black hover:bold">
           <Link href="#our-journey" onClick={(e) => { 
             e.preventDefault(); 
             setShowVideo(true); }}>
@@ -145,7 +145,7 @@ export default function HomeHero() {
       {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, idx) => (
         <div
           key={idx}
-          className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center"
+          className="flex-shrink-0 w-24 h-24 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center"
         >
           <Image
             src={logo.src}

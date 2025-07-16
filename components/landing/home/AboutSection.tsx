@@ -141,9 +141,11 @@ const AboutUsSection = () => {
                 <p className="text-sm italic text-slate-600 mb-1 group-hover:text-blue-600 transition-colors">
                   Group Companies
                 </p>
+                <p className="text-xs text-slate-500 m-4"></p>
                 <p className="text-3xl font-bold text-blue-600 min-h-[2.5rem]">
                   {groupCompanies}
                 </p>
+                <p className="text-xs text-slate-500 m-4"></p> 
                 <div className="w-full h-1 bg-blue-100 rounded-full mt-2 overflow-hidden">
                   <div
                     className={`h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-1000 ease-out ${
