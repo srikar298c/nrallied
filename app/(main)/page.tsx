@@ -7,7 +7,7 @@ import TimelineSection from '@/components/landing/home/TimelineSection';
 import InfrastructureSection from '@/components/landing/home/InfrastructureSection';
 import ContactUsSection from '@/components/landing/home/Contact';
 import IndustrySection from '@/components/landing/home/IndustrySection';
-import ProductsSection from '@/components/landing/home/ProductsSection';
+//import ProductsSection from '@/components/landing/home/ProductsSection';
 
 
 /**
@@ -31,9 +31,9 @@ export default function Home() {
     <section id='industries'>
       <IndustrySection />
       </section>
-      <section id = 'products'>
+      {/* <section id = 'products'>
         <ProductsSection />
-        </section>
+        </section> */}
             <section id='quality-control'>
 
       <QualitySection />
