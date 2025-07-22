@@ -17,7 +17,7 @@ interface Industry {
 const industryData: Industry[] = [
   // {
   //   category: 'FMCG',
-  //   imageSrc: '/images/fmcg.png', // Replace with your actual image path
+  //   imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace with your actual image path
   //   title: 'Fast-moving consumer goods',
   //   description: 'Packaging solutions including bottles for personal care, home care, and food products.',
   // },
@@ -129,9 +129,9 @@ export default function IndustrySection() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={index < 2} // Prioritize loading for the first two cards
                   />
-                  <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold text-gray-800 z-10">
+                  <div className="absolute top-0 left-0 bg-sky-500 backdrop-blur-sm px-5 py-1.5 rounded-r-full text-sm font-semibold text-white z-10">
                     {industry.category}
-                  </div>
+              </div>
                 </div>
 
                 {/* Content */}
