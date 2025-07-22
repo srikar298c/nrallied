@@ -39,6 +39,12 @@ const industryData: Industry[] = [
   //   title: 'Beverage and spirits packaging',
   //   description: 'Specialized solutions for the beverage and spirits industry, ensuring product integrity and compliance.',
   // },
+  // {
+  //   category: 'FMCG',
+  //   imageSrc: '/images/fmcg.png', // Replace with your actual image path
+  //   title: 'Fast-moving consumer goods',
+  //   description: 'Packaging solutions including bottles for personal care, home care, and food products.',
+  // },
    {
     category: 'FMCG',
     imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
@@ -113,47 +119,51 @@ export default function IndustrySection() {
           viewport={{ once: true, amount: 0.2 }} // Animate once when 20% of element is in view
         >
           {industryData.map((industry, index) => (
-            <motion.div
-              key={index}
-              className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200"
-              variants={itemVariants}
-            >
-              <div className="flex flex-col md:flex-row h-full">
-                {/* Image and Category */}
-                <div className="relative w-full md:w-2/5 aspect-[3/2] md:aspect-auto md:h-full bg-gray-100 flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={industry.imageSrc}
-                    alt={industry.category}
-                    fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={index < 2} // Prioritize loading for the first two cards
-                  />
-                  <div className="absolute top-0 left-0 bg-sky-500 backdrop-blur-sm px-5 py-1.5 rounded-r-full text-sm font-semibold text-white z-10">
-                    {industry.category}
-              </div>
-                </div>
+  <motion.div
+    key={index}
+    className={`bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200
+      ${index === 4 ? 'md:col-span-2 md:mx-auto md:w-1/2' : ''}
+    `}
+    variants={itemVariants}
+  >
+    <div className="flex flex-col md:flex-row h-full">
+      {/* Image and Category */}
+      <div className="relative w-full md:w-2/5 aspect-[3/2] md:aspect-auto md:h-full bg-gray-100 flex items-center justify-center overflow-hidden">
+        <Image
+          src={industry.imageSrc}
+          alt={industry.category}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={index < 2}
+        />
+        <div className="absolute top-0 left-0 bg-sky-500 backdrop-blur-sm px-5 py-1.5 rounded-r-full text-sm font-semibold text-white z-10">
+          {industry.category}
+        </div>
+      </div>
 
-                {/* Content */}
-                <div className="p-6 md:p-8 flex flex-col justify-between w-full md:w-3/5 text-left">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 leading-tight">
-                      {industry.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
-                      {industry.description}
-                    </p>
-                  </div>
-                  <Link
-                    href="#contact"
-                    className="self-start px-6 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-base font-medium inline-block"
-                  >
-                    Contact Us
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      {/* Content */}
+      <div className="p-6 md:p-8 flex flex-col justify-between w-full md:w-3/5 text-left">
+        <div>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 leading-tight">
+            {industry.title}
+          </h3>
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+            {industry.description}
+          </p>
+        </div>
+        <Link
+          href="#contact"
+          className="self-start px-6 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-base font-medium inline-block"
+        >
+          Contact Us
+        </Link>
+      </div>
+    </div>
+  </motion.div>
+))}
+
+        
         </motion.div>
       </div>
     </section>
