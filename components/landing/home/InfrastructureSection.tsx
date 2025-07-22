@@ -45,25 +45,29 @@ const features = [
   },
 ]
 
+// ✅ Machine card component
+const ImageCard = ({ m }: { m: Machine }) => (
+  <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+    <Image src={m.src} alt={m.label} fill className="object-contain" />
+    <span className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 bg-white text-xs px-3 py-1 rounded-md outline outline-gray-400">
+      {m.label}
+    </span>
+    {m.upcoming && (
+      <span className="absolute top-2 right-2 bg-pink-600 text-white text-[0.65rem] px-2 py-0.5 rounded">
+        UPCOMING
+      </span>
+    )}
+  </div>
+)
+
 export default function InfrastructureSection() {
   const [showAllMobile, setShowAllMobile] = useState(false)
 
-  // For mobile bottom row, show first 2 or all 4 if toggled
-  const mobileBottom = showAllMobile ? machines.slice(4) : machines.slice(4, 6)
-
-  const ImageCard = ({ m }: { m: Machine }) => (
-    <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
-      <Image src={m.src} alt={m.label} fill className="object-contain" />
-      <span className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 bg-white text-xs px-3 py-1 rounded-md outline outline-1 outline-gray-400">
-        {m.label}
-      </span>
-      {m.upcoming && (
-        <span className="absolute top-2 right-2 bg-pink-600 text-white text-[0.65rem] px-2 py-0.5 rounded">
-          UPCOMING
-        </span>
-      )}
-    </div>
-  )
+  // Device‑specific slicing
+  const leftMachines = machines.slice(0, 2)
+  const rightMachines = machines.slice(2, 4)
+  const bottomMachinesDesktop = machines.slice(4)
+  //const bottomMachinesMobile = showAllMobile ? bottomMachinesDesktop : machines.slice(4, 6)
 
   return (
     <section className="bg-gradient-to-b from-[#F0F4F9] to-[#95D7FA] py-20">
@@ -74,26 +78,20 @@ export default function InfrastructureSection() {
           subtitle="Discover our state‑of‑the‑art manufacturing facilities, meticulously equipped with the latest technology to ensure unparalleled precision, efficiency, and quality in every product."
         />
 
-        {/* 3‑column grid with larger center */}
-        <div
-          className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-12 mt-12 items-start"
-        >
-          {/* Left images */}
+        {/* 💠 Desktop Grid: 3 Columns */}
+        <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] gap-12 mt-12 items-start">
+          {/* Left */}
           <div className="flex flex-col items-center space-y-8">
-            {machines.slice(0, 2).map((m, i) => (
-              <ImageCard key={i} m={m} />
-            ))}
+            {leftMachines.map((m, i) => <ImageCard key={i} m={m} />)}
           </div>
 
-          {/* Center content (wider on lg) */}
+          {/* Center Features */}
           <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-8 text-left">
             {features.map((f, i) => (
-              <div className="flex items-start space-x-4" key={i}>
+              <div key={i} className="flex items-start space-x-4">
                 <CheckCircle className="text-[#0476D9] mt-1" size={24} />
                 <div>
-                  <h4 className="font-semibold text-gray-800 text-lg">
-                    {f.title}
-                  </h4>
+                  <h4 className="font-semibold text-gray-800 text-lg">{f.title}</h4>
                   <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     {f.description}
                   </p>
@@ -102,38 +100,49 @@ export default function InfrastructureSection() {
             ))}
           </div>
 
-          {/* Right images */}
+          {/* Right */}
           <div className="flex flex-col items-center space-y-8">
-            {machines.slice(2, 4).map((m, i) => (
-              <ImageCard key={i} m={m} />
-            ))}
+            {rightMachines.map((m, i) => <ImageCard key={i} m={m} />)}
           </div>
         </div>
 
-        {/* Bottom images */}
-        {/* Desktop: show all */}
-        <div className="hidden lg:flex flex-wrap justify-center gap-10 mt-16">
-          {machines.slice(4).map((m, i) => (
-            <ImageCard key={i} m={m} />
-          ))}
-        </div>
-
-        {/* Mobile: sliced + see more */}
+        {/* 💠 Mobile Grid: Features on Top, Machines Below */}
         <div className="lg:hidden mt-12">
-          <div className="flex flex-wrap justify-center gap-10">
-            {mobileBottom.map((m, i) => (
-              <ImageCard key={i} m={m} />
-            ))}
-          </div>
+  {/* Features */}
+  <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 space-y-8 text-left">
+    {features.map((f, i) => (
+      <div key={i} className="flex items-start space-x-3">
+        <CheckCircle className="text-[#0476D9] mt-1" size={20} />
+        <div>
+          <h4 className="font-semibold text-gray-800 text-base">{f.title}</h4>
+          <p className="text-gray-600 text-sm leading-relaxed">{f.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
 
-          <button
-            onClick={() => setShowAllMobile(!showAllMobile)}
-            className="mt-8 px-6 py-2 bg-gradient-to-r from-[#0476D9] to-[#0456B3] text-white rounded-full hover:scale-105 transition-transform"
-          >
-            {showAllMobile ? 'Show Less' : 'See More Machines'}
-          </button>
+        {/* ✅ Mobile: Show all machines if toggled */}
+  <div className="mt-12 flex flex-wrap justify-center gap-10">
+    {(showAllMobile ? machines : machines.slice(0, 4)).map((m, i) => (
+      <ImageCard key={i} m={m} />
+    ))}
+  </div>
+
+  {/* Show More/Less Button */}
+  <button
+    onClick={() => setShowAllMobile(!showAllMobile)}
+    className="mt-8 px-6 py-2 bg-gradient-to-r from-[#0476D9] to-[#0456B3] text-white rounded-full hover:scale-105 transition-transform"
+  >
+    {showAllMobile ? 'Show Less' : 'See More Machines'}
+  </button>
+</div>
+
+        {/* 💠 Desktop Bottom Machines */}
+        <div className="hidden lg:flex flex-wrap justify-center gap-10 mt-16">
+          {bottomMachinesDesktop.map((m, i) => <ImageCard key={i} m={m} />)}
         </div>
       </div>
     </section>
   )
 }
+
