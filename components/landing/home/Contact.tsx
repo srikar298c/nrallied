@@ -38,117 +38,57 @@ export default function ContactUsSection() {
 const scriptURL= "https://script.google.com/macros/s/AKfycbzmTMSTA2288M3LZy6fcRl13IMhIGd4hsBNxkSrCWPKAI6hDHtaa7O1RgtVDX3zuJ3b/exec";
 const [isLoading, setIsLoading] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+// const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
 
-  if (isLoading) return;
-  setIsLoading(true);
+//   if (isLoading) return;
+//   setIsLoading(true);
 
-  // const formDataToSend = new FormData();
-  // formDataToSend.append('name', formData.name.trim());
-  // formDataToSend.append('company', formData.company.trim());
-  // formDataToSend.append('email', formData.email.trim());
-  // formDataToSend.append('phone', formData.phone.trim());
-  // formDataToSend.append('inquiryType', formData.inquiryType.trim());
-  // formDataToSend.append('message', formData.message.trim());
-  const trimmedData = {
-    name: formData.name.trim(),
-    company: formData.company.trim(),
-    email: formData.email.trim(),
-    phone: formData.phone.trim(),
-    inquiryType: formData.inquiryType.trim(),
-    message: formData.message.trim(),
-  };
+//   // const formDataToSend = new FormData();
+//   // formDataToSend.append('name', formData.name.trim());
+//   // formDataToSend.append('company', formData.company.trim());
+//   // formDataToSend.append('email', formData.email.trim());
+//   // formDataToSend.append('phone', formData.phone.trim());
+//   // formDataToSend.append('inquiryType', formData.inquiryType.trim());
+//   // formDataToSend.append('message', formData.message.trim());
+//   const trimmedData = {
+//     name: formData.name.trim(),
+//     company: formData.company.trim(),
+//     email: formData.email.trim(),
+//     phone: formData.phone.trim(),
+//     inquiryType: formData.inquiryType.trim(),
+//     message: formData.message.trim(),
+//   };
 
-  // Step 2: Basic client-side validation
-  if (!trimmedData.name || !trimmedData.email || !trimmedData.message) {
-    toast.error('Name, email, and message are required.');
-    setIsLoading(false);
-    return;
-  }
-// Step 3: Convert to FormData
-  const formDataToSend = new FormData();
-  for (const key in trimmedData) {
-    formDataToSend.append(key, trimmedData[key as keyof typeof trimmedData]);
-  }
+//   // Step 2: Basic client-side validation
+//   if (!trimmedData.name || !trimmedData.email || !trimmedData.message) {
+//     toast.error('Name, email, and message are required.');
+//     setIsLoading(false);
+//     return;
+//   }
+// // Step 3: Convert to FormData
+//   const formDataToSend = new FormData();
+//   for (const key in trimmedData) {
+//     formDataToSend.append(key, trimmedData[key as keyof typeof trimmedData]);
+//   }
 
   
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 6000); // 7s timeout
-
-  try {
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      body: formDataToSend,
-      signal: controller.signal,
-      keepalive: true, // Allows request to finish if user navigates away
-
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) throw new Error('Network response was not ok');
-
-    toast.success("Thank you for reaching out. We'll be in touch soon!", {
-      duration: 3000,
-      icon: '🚀',
-      style: {
-        background: 'green',
-        color: '#fff',
-        fontSize: '20px',
-      },
-    });
-
-    setFormData({
-      name: '',
-      company: '',
-      email: '',
-      phone: '',
-      inquiryType: '',
-      message: '',
-    });
-  } catch (error: any) {
-    if (error.name === 'AbortError') {
-      toast.error('Server is taking too long. Please try again later.', {
-        duration: 5000,
-        icon: '⏱️',
-        style: { background: 'orange', color: '#fff', fontSize: '18px' },
-      });
-    } else {
-      console.error('Form submission error:', error);
-      toast.error('Something went wrong. Please try again later.', {
-        duration: 5000,
-        icon: '❌',
-        style: {
-          background: 'red',
-          color: '#fff',
-          fontSize: '20px',
-        },
-      });
-    }
-  } finally {
-    setIsLoading(false);
-  }
-};
-
-// const handleSubmit = async (e: React.FormEvent) => {
-//   e.preventDefault();
-//   setIsLoading(true); // Start loading
-
-//   const formDataToSend = new FormData();
-//   formDataToSend.append('name', formData.name);
-//   formDataToSend.append('company', formData.company);
-//   formDataToSend.append('email', formData.email);
-//   formDataToSend.append('phone', formData.phone);
-//   formDataToSend.append('inquiryType', formData.inquiryType);
-//   formDataToSend.append('message', formData.message);
+//   const controller = new AbortController();
+//   const timeoutId = setTimeout(() => controller.abort(), 6000); // 7s timeout
 
 //   try {
-//     await fetch(scriptURL, {
+//     const response = await fetch(scriptURL, {
 //       method: 'POST',
 //       body: formDataToSend,
+//       signal: controller.signal,
+//       keepalive: true, // Allows request to finish if user navigates away
+
 //     });
+
+//     clearTimeout(timeoutId);
+
+//     if (!response.ok) throw new Error('Network response was not ok');
 
 //     toast.success("Thank you for reaching out. We'll be in touch soon!", {
 //       duration: 3000,
@@ -168,21 +108,81 @@ const handleSubmit = async (e: React.FormEvent) => {
 //       inquiryType: '',
 //       message: '',
 //     });
-//   } catch (error) {
-//     console.error('Contact form submission error:', error);
-//     toast.error('Something went wrong. Please try again later.', {
-//       duration: 5000,
-//       icon: '❌',
-//       style: {
-//         background: 'red',
-//         color: '#fff',
-//         fontSize: '20px',
-//       },
-//     });
+//   } catch (error: any) {
+//     if (error.name === 'AbortError') {
+//       toast.error('Server is taking too long. Please try again later.', {
+//         duration: 5000,
+//         icon: '⏱️',
+//         style: { background: 'orange', color: '#fff', fontSize: '18px' },
+//       });
+//     } else {
+//       console.error('Form submission error:', error);
+//       toast.error('Something went wrong. Please try again later.', {
+//         duration: 5000,
+//         icon: '❌',
+//         style: {
+//           background: 'red',
+//           color: '#fff',
+//           fontSize: '20px',
+//         },
+//       });
+//     }
 //   } finally {
-//     setIsLoading(false); // End loading
+//     setIsLoading(false);
 //   }
-// };  
+// };
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true); // Start loading
+
+  const formDataToSend = new FormData();
+  formDataToSend.append('name', formData.name);
+  formDataToSend.append('company', formData.company);
+  formDataToSend.append('email', formData.email);
+  formDataToSend.append('phone', formData.phone);
+  formDataToSend.append('inquiryType', formData.inquiryType);
+  formDataToSend.append('message', formData.message);
+
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      body: formDataToSend,
+    });
+
+    toast.success("Thank you for reaching out. We'll be in touch soon!", {
+      duration: 3000,
+      icon: '🚀',
+      style: {
+        background: 'green',
+        color: '#fff',
+        fontSize: '20px',
+      },
+    });
+
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      inquiryType: '',
+      message: '',
+    });
+  } catch (error) {
+    console.error('Contact form submission error:', error);
+    toast.error('Something went wrong. Please try again later.', {
+      duration: 5000,
+      icon: '❌',
+      style: {
+        background: 'red',
+        color: '#fff',
+        fontSize: '20px',
+      },
+    });
+  } finally {
+    setIsLoading(false); // End loading
+  }
+};  
 return (
     <section id="contact" className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
       <div className="container mx-auto px-4">

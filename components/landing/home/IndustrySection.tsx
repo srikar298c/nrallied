@@ -15,29 +15,59 @@ interface Industry {
 }
 
 const industryData: Industry[] = [
-  {
+  // {
+  //   category: 'FMCG',
+  //   imageSrc: '/images/fmcg.png', // Replace with your actual image path
+  //   title: 'Fast-moving consumer goods',
+  //   description: 'Packaging solutions including bottles for personal care, home care, and food products.',
+  // },
+  // {
+  //   category: 'OIL',
+  //   imageSrc: '/images/oil.png', // Replace with your actual image path
+  //   title: 'Robust and leak-proof packaging',
+  //   description: 'Tailored for the transportation and storage of various edible and industrial oils.',
+  // },
+  // {
+  //   category: 'PHARMA',
+  //   imageSrc: '/images/pharma.png', // Replace with your actual image path
+  //   title: 'High-grade, sterile packaging solutions',
+  //   description: 'Ensuring safety and compliance for medical and health-related products.',
+  // },
+  // {
+  //   category: 'BEVERAGE SPIRITS',
+  //   imageSrc: '/images/beverage-spirits.png', // Replace with your actual image path
+  //   title: 'Beverage and spirits packaging',
+  //   description: 'Specialized solutions for the beverage and spirits industry, ensuring product integrity and compliance.',
+  // },
+   {
     category: 'FMCG',
-    imageSrc: '/images/fmcg.png', // Replace with your actual image path
-    title: 'Fast-moving consumer goods',
-    description: 'Packaging solutions including bottles for personal care, home care, and food products.',
+    imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
+    title: 'Confectionery Grade Containers',
+    description: 'Attractive, airtight containers developed to preserve freshness and appeal for sweets, candies, chocolates, and dry treats.',
   },
   {
     category: 'OIL',
-    imageSrc: '/images/oil.png', // Replace with your actual image path
-    title: 'Robust and leak-proof packaging',
-    description: 'Tailored for the transportation and storage of various edible and industrial oils.',
+    imageSrc: '/images/OilGradeContainers.png', // Replace with your actual image path
+    title: 'Oil Grade Containers',
+    description: 'Robust and leak-proof containers designed for edible oils and industrial-grade oils with high chemical resistance and durability.',
+  },
+  {
+    category: 'WATER',
+    imageSrc: '/images/Water Grade Bottles.png', // Replace with your actual image path
+    title: 'Water Grade Bottles',
+    description: 'Crystal-clear, food-safe bottles ideal for packaged drinking water and mineral water solutions with top-tier sealing standards.',
   },
   {
     category: 'PHARMA',
-    imageSrc: '/images/pharma.png', // Replace with your actual image path
-    title: 'High-grade, sterile packaging solutions',
-    description: 'Ensuring safety and compliance for medical and health-related products.',
+    imageSrc: '/images/Pharmaceutical Grade Bottles.png', // Replace with your actual image path
+    title: 'Pharmaceutical Grade Bottles',
+    description: 'Tamper-evident, hygienic containers engineered to meet stringent pharmaceutical standards for syrups, tablets, and oral solutions.',
   },
   {
     category: 'BEVERAGE SPIRITS',
-    imageSrc: '/images/beverage-spirits.png', // Replace with your actual image path
-    title: 'Beverage and spirits packaging',
-    description: 'Specialized solutions for the beverage and spirits industry, ensuring product integrity and compliance.',
+    imageSrc: '/images/Spirits & Beverage Grade Bottle.png', // Replace with your actual image path
+    title: 'Spirits & Beverage Grade Bottle',
+    description: 'Premium-grade bottles crafted for alcoholic and non-alcoholic beverages, ensuring safety, clarity, and shelf appeal for every sip.',
   },
 ];
 
@@ -71,7 +101,7 @@ export default function IndustrySection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
         <SectionTitle
           title="INDUSTRIES "
-          highlight="WE SERVE"
+          highlight="WHAT WE SERVE"
           subtitle="Specialized packaging solutions for diverse industry requirements"
         />
 
