@@ -45,6 +45,12 @@ const industryData: Industry[] = [
   //   title: 'Fast-moving consumer goods',
   //   description: 'Packaging solutions including bottles for personal care, home care, and food products.',
   // },
+    {
+    category: 'BEVERAGE SPIRITS',
+    imageSrc: '/images/Spirits & Beverage Grade Bottle.png', // Replace with your actual image path
+    title: 'Spirits & Beverage Grade Bottle',
+    description: 'Premium-grade bottles crafted for alcoholic and non-alcoholic beverages, ensuring safety, clarity, and shelf appeal for every sip.',
+  },
    {
     category: 'FMCG',
     imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
@@ -69,12 +75,7 @@ const industryData: Industry[] = [
     title: 'Pharmaceutical Grade Bottles',
     description: 'Tamper-evident, hygienic containers engineered to meet stringent pharmaceutical standards for syrups, tablets, and oral solutions.',
   },
-  {
-    category: 'BEVERAGE SPIRITS',
-    imageSrc: '/images/Spirits & Beverage Grade Bottle.png', // Replace with your actual image path
-    title: 'Spirits & Beverage Grade Bottle',
-    description: 'Premium-grade bottles crafted for alcoholic and non-alcoholic beverages, ensuring safety, clarity, and shelf appeal for every sip.',
-  },
+
 ];
 
 // Framer Motion Variants for staggered animation
@@ -106,8 +107,8 @@ export default function IndustrySection() {
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center">
         <SectionTitle
-          title="INDUSTRIES "
-          highlight="WHAT WE SERVE"
+          title="WHAT"
+          highlight="WE SERVE"
           subtitle="Specialized packaging solutions for diverse industry requirements"
         />
 

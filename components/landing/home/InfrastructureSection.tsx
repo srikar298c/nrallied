@@ -12,9 +12,9 @@ interface Machine {
 }
 
 const machines: Machine[] = [
-  { src: '/images/upcoming-asb-70dph.png', label: 'Machine ASB 70DPH', upcoming: true },
   { src: '/images/asb-70-dpw.png', label: 'ASB 70 DPW Machine' },
   { src: '/images/asb-50-mb.png', label: 'ASB 50 MB Machine' },
+  { src: '/images/upcoming-asb-70dph.png', label: 'Machine ASB 70DPH', upcoming: true },
   { src: '/images/techno-robo-packing.png', label: 'Techno Robo Automatic Packing Machine' },
   { src: '/images/shyam-plast.png', label: 'SHYAM Plast Machine' },
   { src: '/images/hlda-automation.png', label: 'HILDA Automation System' },
