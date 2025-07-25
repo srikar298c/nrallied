@@ -10,13 +10,12 @@ import {useEffect, useRef, useState } from 'react'
 const CLIENT_LOGOS = [
   { src: '/images/carousel/diageo1.png', alt: 'Diageo' },
   { src: '/images/carousel/kingfisher1.png', alt: 'Kingfisher' },
+  { src: '/images/carousel/radice1.png', alt: 'Radice' },
   { src: '/images/carousel/itc1.png', alt: 'ITC Limited' },
   { src: '/images/carousel/abd1.png', alt: 'ABD' },
-  { src: '/images/carousel/radice1.png', alt: 'Radice' },
   { src: '/images/carousel/mayora1.png', alt: 'Mayora' },
   { src: '/images/carousel/tilaknagar1.png', alt: 'Tilaknagar' },
- // { src: '/images/carousel/johns1.png', alt: 'Johns' },
-
+  { src: '/images/carousel/johns logo.png', alt: 'Johns' },
 ]
 
 
