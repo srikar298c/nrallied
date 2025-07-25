@@ -14,9 +14,9 @@ interface Machine {
 const machines: Machine[] = [
   { src: '/images/asb-70-dpw.png', label: 'ASB 70 DPW Machine' },
   { src: '/images/asb-50-mb.png', label: 'ASB 50 MB Machine' },
-  { src: '/images/upcoming-asb-70dph.png', label: 'Machine ASB 70DPH', upcoming: true },
   { src: '/images/techno-robo-packing.png', label: 'Techno Robo Automatic Packing Machine' },
   { src: '/images/shyam-plast.png', label: 'SHYAM Plast Machine' },
+   { src: '/images/upcoming-asb-70dph.png', label: 'Machine ASB 70DPH', upcoming: true },
   { src: '/images/hlda-automation.png', label: 'HILDA Automation System' },
   { src: '/images/landt.png', label: 'L&T PET Preform Line' },
   { src: '/images/kaesar-air-compressor.png', label: 'Kaesar Air Compressor' },
