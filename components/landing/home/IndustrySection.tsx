@@ -54,7 +54,7 @@ const industryData: Industry[] = [
   },
    {
     category: 'FMCG',
-    imageSrc: '/images/ConfectioneryGradeContainerS1.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
+    imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
     title: 'Confectionery Grade Containers',
     description: 'Attractive, airtight containers developed to preserve freshness and appeal for sweets, candies, chocolates, and dry treats.',
   },
