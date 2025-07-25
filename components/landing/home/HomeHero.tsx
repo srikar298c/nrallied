@@ -8,12 +8,14 @@ import Link from 'next/link'
 import {useEffect, useRef, useState } from 'react'
 
 const CLIENT_LOGOS = [
-  { src: '/images/carousel/kingfisher.png', alt: 'Kingfisher' },
-  { src: '/images/carousel/radice.png', alt: 'Radice' },
-  { src: '/images/carousel/itc.png', alt: 'ITC Limited' },
-  { src: '/images/carousel/abd.png', alt: 'ABD' },
-  { src: '/images/carousel/mayora.png', alt: 'Mayora' },
-
+  { src: '/images/carousel/diageo1.png', alt: 'Diageo' },
+  { src: '/images/carousel/kingfisher1.png', alt: 'Kingfisher' },
+  { src: '/images/carousel/radice1.png', alt: 'Radice' },
+  { src: '/images/carousel/itc1.png', alt: 'ITC Limited' },
+  { src: '/images/carousel/abd1.png', alt: 'ABD' },
+  { src: '/images/carousel/mayora1.png', alt: 'Mayora' },
+  { src: '/images/carousel/tilaknagar1.png', alt: 'Tilaknagar' },
+  { src: '/images/carousel/johns logo.png', alt: 'Johns' },
 ]
 
 
@@ -145,14 +147,14 @@ export default function HomeHero() {
       {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, idx) => (
         <div
           key={idx}
-          className="flex-shrink-0 w-24 h-24 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center"
+          className="flex-shrink-0 w-26 h-26 sm:w-24 sm:h-24 md:w-26 md:h-26 flex items-center justify-center "
         >
           <Image
             src={logo.src}
             alt={logo.alt}
             width={80}
             height={80}
-            className="object-contain w-full h-full"
+            className="object-contain w-full h-full px-2 sm:px-4 md:px-2 "
           />
         </div>
       ))}

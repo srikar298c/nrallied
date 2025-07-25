@@ -151,7 +151,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     });
 
     toast.success("Thank you for reaching out. We'll be in touch soon!", {
-      duration: 3000,
+      duration: 4000,
       icon: '🚀',
       style: {
         background: 'green',
