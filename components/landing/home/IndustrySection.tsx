@@ -45,6 +45,7 @@ const industryData: Industry[] = [
   //   title: 'Fast-moving consumer goods',
   //   description: 'Packaging solutions including bottles for personal care, home care, and food products.',
   // },
+  //public\images\ConfectioneryGradeContainerS 1.png
     {
     category: 'BEVERAGE SPIRITS',
     imageSrc: '/images/Spirits & Beverage Grade Bottle.png', // Replace with your actual image path
@@ -53,7 +54,7 @@ const industryData: Industry[] = [
   },
    {
     category: 'FMCG',
-    imageSrc: '/images/ConfectioneryGradeContainerS.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
+    imageSrc: '/images/ConfectioneryGradeContainerS1.png', // Replace wipublic\images\ConfectioneryGradeContainerS.pngth your actual image path
     title: 'Confectionery Grade Containers',
     description: 'Attractive, airtight containers developed to preserve freshness and appeal for sweets, candies, chocolates, and dry treats.',
   },
